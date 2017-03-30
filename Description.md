@@ -6,4 +6,4 @@
 Kirill Kudaev, Gavin Goodsell, Tim Bassler
 
 ## Description
-TBD
+See SpecDraft.docx file
