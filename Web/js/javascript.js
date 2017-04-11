@@ -2,7 +2,6 @@ Parse.initialize("c2223ba7dbada94452e35b1659301bc6fc8bba82");
 Parse.serverURL = 'http://ec2-35-163-159-109.us-west-2.compute.amazonaws.com:80/parse';
 
 function signup() {
-  $("#signup").click(function(event){
     event.preventDefault();
 
     //build a check for password and require all values
@@ -31,26 +30,23 @@ function signup() {
         alert("Error: " + error.code + " " + error.message);
       }
     });
-  });
 }
 
-function login(){
-  $("#loginbtn").click(function(event){
-    event.preventDefault();
+function login() {
+  event.preventDefault();
 
-    var loginUser = $("#loginUsername").val();
-    var loginPass = $("#loginPassword").val();
+  var loginUser = $("#loginUsername").val();
+  var loginPass = $("#loginPassword").val();
 
-    Parse.User.logIn(loginUser, loginPass, {
-      success: function(user) {
-        console.log(Parse.Session.current());
-        //Work on: send user to their feed page
-        alert("login successful!");
-      },
-      error: function(user, error) {
-        // The login failed. Check error to see why.
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
+  Parse.User.logIn(loginUser, loginPass, {
+    success: function(user) {
+      console.log(Parse.Session.current());
+      // To work on: send user to their feed page
+      alert("login successful!");
+    },
+    error: function(user, error) {
+      // The login failed. Check error to see why.
+      alert("Error: " + error.code + " " + error.message);
+    }
   });
 }
