@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
+		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
+		56BB50891E9E8D8C006E4CEA /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50881E9E8D8C006E4CEA /* ItemTests.swift */; };
+		56BB508B1E9E8E95006E4CEA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB508A1E9E8E95006E4CEA /* Item.swift */; };
 		814C3ACA1B69877600E307BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC61B69877600E307BB /* Main.storyboard */; };
 		814C3ACB1B69877600E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC81B69877600E307BB /* Images.xcassets */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
@@ -35,6 +38,9 @@
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
 		56BB507E1E9E8967006E4CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56BB50861E9E8D04006E4CEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../PrinCraigslistTests/ViewController.swift; sourceTree = "<group>"; };
+		56BB50881E9E8D8C006E4CEA /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
+		56BB508A1E9E8E95006E4CEA /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		814C3AC71B69877600E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		814C3AC81B69877600E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814C3AC91B69877600E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 			children = (
 				56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */,
 				56BB507E1E9E8967006E4CEA /* Info.plist */,
+				56BB50881E9E8D8C006E4CEA /* ItemTests.swift */,
 			);
 			path = PrinCraigslistTests;
 			sourceTree = "<group>";
@@ -117,7 +124,9 @@
 			children = (
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				56A034D21E21A63B009A9710 /* LoginViewController.swift */,
+				56BB50861E9E8D04006E4CEA /* ViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
+				56BB508A1E9E8E95006E4CEA /* Item.swift */,
 			);
 			name = PrinCraigslist;
 			path = ParseStarterProject;
@@ -249,7 +258,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BB508B1E9E8E95006E4CEA /* Item.swift in Sources */,
+				56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */,
 				56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */,
+				56BB50891E9E8D8C006E4CEA /* ItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
