@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		564285701EA5CACC0068CB82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */; };
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
 		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		56A034D21E21A63B009A9710 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
+				5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */,
 				56A034D21E21A63B009A9710 /* LoginViewController.swift */,
 				56BB50861E9E8D04006E4CEA /* ViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564285701EA5CACC0068CB82 /* ProfileViewController.swift in Sources */,
 				56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);
@@ -432,7 +436,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobileappclub.healings;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirillkudaev.princraigslist;
 				PRODUCT_NAME = PrinCraigslist;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -451,7 +455,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobileappclub.healings;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirillkudaev.princraigslist;
 				PRODUCT_NAME = PrinCraigslist;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -469,6 +473,7 @@
 				56BB50821E9E8967006E4CEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81BA81401A49DA1800E65899 /* Build configuration list for PBXProject "PrinCraigslist" */ = {
 			isa = XCConfigurationList;
