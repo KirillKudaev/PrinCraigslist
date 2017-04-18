@@ -54,10 +54,6 @@ class ItemTests: XCTestCase {
             XCTAssertEqual(systemUnderTest.price, expectedPrice)
         }
         
-        func testSUT_InitializesImageURL() {
-            XCTAssertEqual(systemUnderTest.imageURL, expectedImageURL)
-        }
-        
         func testSUT_InitializesDescription() {
             XCTAssertEqual(systemUnderTest.description, expectedDescription)
         }
