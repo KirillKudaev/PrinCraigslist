@@ -34,7 +34,7 @@
                                 <color key="textColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IHE-Kr-dJV">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IHE-Kr-dJV">
                                 <rect key="frame" x="16" y="312" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -138,13 +138,13 @@
                     </view>
                     <connections>
                         <outlet property="changeSignupModeButton" destination="exX-zv-KuW" id="geg-31-oyj"/>
+                        <outlet property="emailTextField" destination="IHE-Kr-dJV" id="CLx-YX-H4G"/>
                         <outlet property="firstNameTextField" destination="iYi-d9-gyg" id="DJ5-7q-ZAw"/>
                         <outlet property="lastNameTextField" destination="f1K-rM-3Je" id="xI8-W3-WNR"/>
                         <outlet property="messageLabel" destination="gvZ-YJ-h6x" id="6mE-mX-Yh0"/>
                         <outlet property="passwordTextField" destination="HzM-Lq-eaj" id="XLJ-JQ-ew9"/>
                         <outlet property="pleaseMessageLabel" destination="Gm1-qf-09D" id="dJw-gi-HKQ"/>
                         <outlet property="signupOrLogin" destination="MdY-nb-7yb" id="ee4-Kc-piD"/>
-                        <outlet property="usernameTextField" destination="IHE-Kr-dJV" id="NQn-FF-Vxx"/>
                         <segue destination="y3k-aX-Yrf" kind="presentation" identifier="showFeed" id="pb3-bS-Mux"/>
                     </connections>
                 </viewController>
@@ -264,7 +264,6 @@
         <!--Profile View Controller-->
         <scene sceneID="T6y-0h-nPq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ty1-4k-RmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="1aE-Xc-jVO" customClass="ProfileViewController" customModule="PrinCraigslist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0sX-zs-qq0"/>
@@ -287,6 +286,7 @@
                         <segue destination="nLD-qg-JP5" kind="presentation" identifier="logoutSegue" id="jZl-DQ-ifu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ty1-4k-RmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1847.2" y="940.47976011994012"/>
         </scene>

@@ -13,7 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var activityIndicator = UIActivityIndicatorView()
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -21,17 +21,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signupOrLogin: UIButton!
     
     @IBAction func signupOrLogin(_ sender: AnyObject) {
-        if usernameTextField.text == "" || passwordTextField.text == "" {
+        if emailTextField.text == "" || passwordTextField.text == "" {
             
-            createOkAlert(title: "Error in form", message: "Please enter a username and password")
+            createOkAlert(title: "Error in form", message: "Please enter an email and password")
             
         } else if signupMode && (firstNameTextField.text == "" || lastNameTextField.text == "") {
             
             createOkAlert(title: "Error in form", message: "Please enter a name")
             
-        } else if usernameTextField.text?.characters.index(of: " ") != nil {
+        } else if emailTextField.text?.characters.index(of: " ") != nil {
             
-            createOkAlert(title: "Error in form", message: "Please no whitespaces in username")
+            createOkAlert(title: "Error in form", message: "Please no whitespaces in email")
             
         } else if passwordTextField.text?.characters.index(of: " ") != nil {
             
@@ -46,7 +46,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 let user = PFUser()
                 
-                user.username = usernameTextField.text
+                user.username = emailTextField.text
+                user.email = emailTextField.text
                 user.password = passwordTextField.text
                 user["firstName"] = firstNameTextField.text
                 user["lastName"] = lastNameTextField.text
@@ -78,7 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 // Login mode
                 
-                PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: passwordTextField.text!, block: { (yser, error) in
+                PFUser.logInWithUsername(inBackground: emailTextField.text!, password: passwordTextField.text!, block: { (yser, error) in
                     
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
@@ -145,7 +146,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField == self.usernameTextField {
+        if textField == self.emailTextField {
             // Jump to password field from username field
             self.passwordTextField.becomeFirstResponder()
         } else if textField == self.passwordTextField && signupMode {
