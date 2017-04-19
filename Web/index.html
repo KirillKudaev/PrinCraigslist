@@ -30,9 +30,13 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#">Create a Listing</a></li>
          </ul>
-         <ul class="nav navbar-nav navbar-right">
-            <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#Signup">Sign Up - New Users</button>
-            <button class="btn btn-success navbar-btn" data-toggle="modal" data-target="#Login">Login - Existing Users</button>
+         <ul class="nav navbar-nav navbar-right" id="userNotSignedIn">
+            <li><a data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right" id="userSignedIn" style="display:none";>
+            <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+            <li><a onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
          </ul>
       </div>
    </nav>
@@ -49,7 +53,7 @@
                <div class="form-group row">
                   <label for="loginUsername" class="col-sm-2 col-form-label">Username</label>
                   <div class="col-sm-10">
-                     <input type="text" id="loginUsername" placeholder="Username">
+                     <input type="text" id="loginUsername" placeholder="Username (Email)">
                   </div>
                </div>
                <div class="form-group row">
@@ -68,7 +72,6 @@
       </div>
    </div>
 
-
    <!-- Signup Modal -->
    <div id="Signup" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -79,15 +82,9 @@
             </div>
             <div class="modal-body">
                <div class="form-group row">
-                  <label for="createUsername" class="col-sm-2 col-form-label">Username</label>
+                  <label for="createEmail" class="col-sm-2 col-form-label">Email Address</label>
                   <div class="col-sm-10">
-                     <input type="text" id="createUsername" placeholder="Username">
-                  </div>
-               </div>
-               <div class="form-group row">
-                  <label for="createUserPass" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                     <input type="password" id="createUserPass" placeholder="Password">
+                     <input type="email" id="createEmail" placeholder="Email">
                   </div>
                </div>
                <div class="form-group row">
@@ -103,14 +100,14 @@
                   </div>
                </div>
                <div class="form-group row">
-                  <label for="createEmail" class="col-sm-2 col-form-label">Email Address</label>
+                  <label for="createUserPass" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                     <input type="text" id="createEmail" placeholder="Email">
+                     <input type="password" id="createUserPass" placeholder="Password">
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="signup()">Sign up</button>
+               <button type="button" class="btn btn-default" onclick="signupUser()">Sign up</button>
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
          </div>
@@ -129,53 +126,53 @@
    <!-- Listings -->
    <div class="panel-group">
       <div class="panel panel-primary" id="listing1">
-         <div class="panel-heading" id="listing1title"></div>
-         <div class="panel-body" id="listing1body"></div>
+         <div class="panel-heading" id="listing1title">Item 1</div>
+         <div class="panel-body" id="listing1body">Item description and images</div>
          <div class="panel-footer" id="listing1footer"></div>
       </div>
       <div class="panel panel-primary" id="listing2">
-         <div class="panel-heading" id="listing2title"></div>
-         <div class="panel-body" id="listing2body"></div>
+         <div class="panel-heading" id="listing2title">Item 2</div>
+         <div class="panel-body" id="listing2body">Item description and images</div>
          <div class="panel-footer" id="listing2footer"></div>
       </div>
       <div class="panel panel-primary" id="listing3">
-         <div class="panel-heading" id="listing3title"></div>
-         <div class="panel-body" id="listing3body"></div>
+         <div class="panel-heading" id="listing3title">Item 3</div>
+         <div class="panel-body" id="listing3body">Item description and images</div>
          <div class="panel-footer" id="listing3footer"></div>
       </div>
       <div class="panel panel-primary" id="listing4">
-         <div class="panel-heading" id="listing4title"></div>
-         <div class="panel-body" id="listing4body"></div>
+         <div class="panel-heading" id="listing4title">Item 4</div>
+         <div class="panel-body" id="listing4body">Item description and images</div>
          <div class="panel-footer" id="listing4footer"></div>
       </div>
       <div class="panel panel-primary" id="listing5">
-         <div class="panel-heading" id="listing5title"></div>
-         <div class="panel-body" id="listing5body"></div>
+         <div class="panel-heading" id="listing5title">Item 5</div>
+         <div class="panel-body" id="listing5body">Item description and images</div>
          <div class="panel-footer" id="listing5footer"></div>
       </div>
       <div class="panel panel-primary" id="listing6">
-         <div class="panel-heading" id="listing6title"></div>
-         <div class="panel-body" id="listing6body"></div>
+         <div class="panel-heading" id="listing6title">Item 6</div>
+         <div class="panel-body" id="listing6body">Item description and images</div>
          <div class="panel-footer" id="listing6footer"></div>
       </div>
       <div class="panel panel-primary" id="listing7">
-         <div class="panel-heading" id="listing7title"></div>
-         <div class="panel-body" id="listing7body"></div>
+         <div class="panel-heading" id="listing7title">Item 7</div>
+         <div class="panel-body" id="listing7body">Item description and images</div>
          <div class="panel-footer" id="listing7footer"></div>
       </div>
       <div class="panel panel-primary" id="listing8">
-         <div class="panel-heading" id="listing8title"></div>
-         <div class="panel-body" id="listing8body"></div>
+         <div class="panel-heading" id="listing8title">Item 8</div>
+         <div class="panel-body" id="listing8body">Item description and images</div>
          <div class="panel-footer" id="listing8footer"></div>
       </div>
       <div class="panel panel-primary" id="listing9">
-         <div class="panel-heading" id="listing9title"></div>
-         <div class="panel-body" id="listing9body"></div>
+         <div class="panel-heading" id="listing9title">Item 9</div>
+         <div class="panel-body" id="listing9body">Item description and images</div>
          <div class="panel-footer" id="listing9footer"></div>
       </div>
       <div class="panel panel-primary" id="listing10">
-         <div class="panel-heading" id="listing10title"></div>
-         <div class="panel-body" id="listing10body"></div>
+         <div class="panel-heading" id="listing10title">Item 10</div>
+         <div class="panel-body" id="listing10body">Item description and images</div>
          <div class="panel-footer" id="listing10footer"></div>
       </div>
    </div>
