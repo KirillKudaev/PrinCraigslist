@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/javascript.js"></script>
+  <script src="index.js"></script>
 </head>
 <body>
 
@@ -27,7 +27,34 @@
   <input id="createEmail" type="text" placeholder="Enter Email" required /> <br/>
   <input id="createUserPass" type="password" placeholder="Enter Password" required /> <br/>
   
-  <button id="signupbtn" onclick="signup()">Sign up</button>
+  <button id="signupbtn" onclick="signupUser()">Sign up</button>
+  
+  <button id="signupbtn" onclick="getUser()">Get User</button>
+  
+</div>
+
+<div id="signupdiv" class="container">
+  <h2>PrinCraigslist</h2>
+  <h4>Update account</h4>
+
+  
+  <input id="updateFirstName" type="text" placeholder="Enter Firstname" required /> <br/>
+  <input id="updateLastName" type="text" placeholder="Enter Lastname" required /> <br/>
+  <input id="updateEmail" type="text" placeholder="Enter Email" required /> <br/>
+  <input id="updateUserPass" type="password" placeholder="Enter Password" required /> <br/>
+  
+  <button id="signupbtn" onclick="updateUser()">Sign up</button>
+  
+  <button id="signupbtn" onclick="getUser()">Get User</button>
+ 
+</div>
+
+<div id="signupdiv" class="container">
+  <h2>PrinCraigslist</h2>
+  <h4>Delete account</h4>
+  
+  <button id="signupbtn" onclick="deleteUser()">Delete User</button>
+ 
 </div>
 
 <div class="container">
