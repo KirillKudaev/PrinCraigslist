@@ -4,191 +4,191 @@
 
 <head>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+   <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 
 	<title>Prin's Crägslist</title>
    <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="index.js"></script>
+   <link rel="stylesheet" href="css/styles.css">
+   <script src="js/javascript.js"></script>
 </head>
 
 <body>
- <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.htm">Principia's Crägslist</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Create a Listing</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#Signup">Sign Up - New Users</button>
-    <button class="btn btn-success navbar-btn" data-toggle="modal" data-target="#Login">Login - Existing Users</button>
-    </ul>
-  </div>
-</nav>
 
-
-
-<!-- Login Modal -->
-<div id="Login" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login - Existing Users</h4>
+   <!-- Head Navbar -->
+   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="index.htm">Principia's Crägslist</a>
+         </div>
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Create a Listing</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#Signup">Sign Up - New Users</button>
+            <button class="btn btn-success navbar-btn" data-toggle="modal" data-target="#Login">Login - Existing Users</button>
+         </ul>
       </div>
-      <div class="modal-body">
-          <div class="form-group row">
-            <label for="loginUsername" class="col-sm-2 col-form-label">Username</label>
-            <div class="col-sm-10">
-              <input type="text" id="loginUsername" placeholder="Username">
+   </nav>
+
+   <!-- Login Modal -->
+   <div id="Login" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Login - Existing Users</h4>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" id="loginPassword" placeholder="Password">
+            <div class="modal-body">
+               <div class="form-group row">
+                  <label for="loginUsername" class="col-sm-2 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="loginUsername" placeholder="Username">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="password" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                     <input type="password" id="loginPassword" placeholder="Password">
+                  </div>
+               </div>
             </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="login()">Login</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- Signup Modal -->
-<div id="Signup" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Signup - New Users</h4>
-      </div>
-      <div class="modal-body">
-          <div class="form-group row">
-            <label for="createUsername" class="col-sm-2 col-form-label">Username</label>
-            <div class="col-sm-10">
-              <input type="text" id="createUsername" placeholder="Username">
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="login()">Login</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="createUserPass" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" id="createUserPass" placeholder="Password">
+         </div>
+
+      </div>
+   </div>
+
+
+   <!-- Signup Modal -->
+   <div id="Signup" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Signup - New Users</h4>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="createFirstname" class="col-sm-2 col-form-label">First Name</label>
-            <div class="col-sm-10">
-              <input type="text" id="createFirstname" placeholder="First Name">
+            <div class="modal-body">
+               <div class="form-group row">
+                  <label for="createUsername" class="col-sm-2 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="createUsername" placeholder="Username">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createUserPass" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                     <input type="password" id="createUserPass" placeholder="Password">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createFirstname" class="col-sm-2 col-form-label">First Name</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="createFirstname" placeholder="First Name">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createLastname" class="col-sm-2 col-form-label">Last Name</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="createLastname" placeholder="Last Name">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createEmail" class="col-sm-2 col-form-label">Email Address</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="createEmail" placeholder="Email">
+                  </div>
+               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="createLastname" class="col-sm-2 col-form-label">Last Name</label>
-            <div class="col-sm-10">
-              <input type="text" id="createLastname" placeholder="Last Name">
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="signup()">Sign up</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="createEmail" class="col-sm-2 col-form-label">Email Address</label>
-            <div class="col-sm-10">
-              <input type="text" id="createEmail" placeholder="Email">
-            </div>
-          </div>
+         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="signup()">Sign up</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+
+   <!-- Top Page list -->
+   <ul class="pagination" id="pages">
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+   </ul>
+
+   <!-- Listings -->
+   <div class="panel-group">
+      <div class="panel panel-primary" id="listing1">
+         <div class="panel-heading" id="listing1title"></div>
+         <div class="panel-body" id="listing1body"></div>
+         <div class="panel-footer" id="listing1footer"></div>
       </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!--
-
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Create an account</h4>
-
-  
-  <input id="createFirstName" type="text" placeholder="Enter Firstname" required /> <br/>
-  <input id="createLastName" type="text" placeholder="Enter Lastname" required /> <br/>
-  <input id="createEmail" type="text" placeholder="Enter Email" required /> <br/>
-  <input id="createUserPass" type="password" placeholder="Enter Password" required /> <br/>
-  
-  <button id="signupbtn" onclick="signupUser()">Sign up</button>
-  
-  <button id="signupbtn" onclick="getUser()">Get User</button>
-  
-</div>
-
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Update account</h4>
-
-  
-  <input id="updateFirstName" type="text" placeholder="Enter Firstname" required /> <br/>
-  <input id="updateLastName" type="text" placeholder="Enter Lastname" required /> <br/>
-  <input id="updateEmail" type="text" placeholder="Enter Email" required /> <br/>
-  <input id="updateUserPass" type="password" placeholder="Enter Password" required /> <br/>
-  
-  <button id="signupbtn" onclick="updateUser()">Sign up</button>
-  
-  <button id="signupbtn" onclick="getUser()">Get User</button>
- 
-</div>
-
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Delete account</h4>
-  
-  <button id="signupbtn" onclick="deleteUser()">Delete User</button>
- 
-</div>
-
-<div class="container">
-<h3>Login to your account</h3>
-  <div id="login">
-    <div class="form-group row">
-      <label for="Email" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="text" id="email" placeholder="email">
+      <div class="panel panel-primary" id="listing2">
+         <div class="panel-heading" id="listing2title"></div>
+         <div class="panel-body" id="listing2body"></div>
+         <div class="panel-footer" id="listing2footer"></div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="password" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" id="loginPassword" placeholder="Password">
+      <div class="panel panel-primary" id="listing3">
+         <div class="panel-heading" id="listing3title"></div>
+         <div class="panel-body" id="listing3body"></div>
+         <div class="panel-footer" id="listing3footer"></div>
       </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button id="loginbtn" onclick="login()" class="btn btn-primary">Sign in</button>
+      <div class="panel panel-primary" id="listing4">
+         <div class="panel-heading" id="listing4title"></div>
+         <div class="panel-body" id="listing4body"></div>
+         <div class="panel-footer" id="listing4footer"></div>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="panel panel-primary" id="listing5">
+         <div class="panel-heading" id="listing5title"></div>
+         <div class="panel-body" id="listing5body"></div>
+         <div class="panel-footer" id="listing5footer"></div>
+      </div>
+      <div class="panel panel-primary" id="listing6">
+         <div class="panel-heading" id="listing6title"></div>
+         <div class="panel-body" id="listing6body"></div>
+         <div class="panel-footer" id="listing6footer"></div>
+      </div>
+      <div class="panel panel-primary" id="listing7">
+         <div class="panel-heading" id="listing7title"></div>
+         <div class="panel-body" id="listing7body"></div>
+         <div class="panel-footer" id="listing7footer"></div>
+      </div>
+      <div class="panel panel-primary" id="listing8">
+         <div class="panel-heading" id="listing8title"></div>
+         <div class="panel-body" id="listing8body"></div>
+         <div class="panel-footer" id="listing8footer"></div>
+      </div>
+      <div class="panel panel-primary" id="listing9">
+         <div class="panel-heading" id="listing9title"></div>
+         <div class="panel-body" id="listing9body"></div>
+         <div class="panel-footer" id="listing9footer"></div>
+      </div>
+      <div class="panel panel-primary" id="listing10">
+         <div class="panel-heading" id="listing10title"></div>
+         <div class="panel-body" id="listing10body"></div>
+         <div class="panel-footer" id="listing10footer"></div>
+      </div>
+   </div>
 
--->
+   <!-- Bottom Page list -->
+   <ul class="pagination" id="pages">
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+   </ul>
 
 </body>
+
 </html>
