@@ -145,7 +145,7 @@
                         <outlet property="passwordTextField" destination="HzM-Lq-eaj" id="XLJ-JQ-ew9"/>
                         <outlet property="pleaseMessageLabel" destination="Gm1-qf-09D" id="dJw-gi-HKQ"/>
                         <outlet property="signupOrLogin" destination="MdY-nb-7yb" id="ee4-Kc-piD"/>
-                        <segue destination="y3k-aX-Yrf" kind="presentation" identifier="showFeed" id="pb3-bS-Mux"/>
+                        <segue destination="y3k-aX-Yrf" kind="presentation" identifier="showFeed" modalTransitionStyle="flipHorizontal" id="pb3-bS-Mux"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0u6-RB-k8b" sceneMemberID="firstResponder"/>
@@ -283,7 +283,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="nLD-qg-JP5" kind="presentation" identifier="logoutSegue" id="jZl-DQ-ifu"/>
+                        <segue destination="nLD-qg-JP5" kind="presentation" identifier="logoutSegue" modalTransitionStyle="flipHorizontal" id="jZl-DQ-ifu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ty1-4k-RmY" userLabel="First Responder" sceneMemberID="firstResponder"/>

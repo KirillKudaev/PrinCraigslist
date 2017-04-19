@@ -21,23 +21,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signupOrLogin: UIButton!
     
     @IBAction func signupOrLogin(_ sender: AnyObject) {
-        if emailTextField.text == "" || passwordTextField.text == "" {
+        
+        var formError = false
+        
+        if signupMode {
             
-            createOkAlert(title: "Error in form", message: "Please enter an email and password")
+            let signupInfo = SignupInfo(email: emailTextField.text!, password: passwordTextField.text!,
+                firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
             
-        } else if signupMode && (firstNameTextField.text == "" || lastNameTextField.text == "") {
-            
-            createOkAlert(title: "Error in form", message: "Please enter a name")
-            
-        } else if emailTextField.text?.characters.index(of: " ") != nil {
-            
-            createOkAlert(title: "Error in form", message: "Please no whitespaces in email")
-            
-        } else if passwordTextField.text?.characters.index(of: " ") != nil {
-            
-            createOkAlert(title: "Error in form", message: "Please no whitespaces in password")
-            
+            if signupInfo.error {
+                formError = true
+                createOkAlert(title: "Error in form", message: signupInfo.errorMessage!)
+            }
         } else {
+            
+            let loginInfo = LoginInfo(email: emailTextField.text!, password: passwordTextField.text!)
+            
+            if loginInfo.error {
+                formError = true
+                createOkAlert(title: "Error in form", message: loginInfo.errorMessage!)
+            }
+        }
+        
+        if !formError {
             
             showActivityIndicator()
             
