@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		564285701EA5CACC0068CB82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */; };
+		564285721EA81BC60068CB82 /* SignupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285711EA81BC60068CB82 /* SignupInfo.swift */; };
+		564285741EA820E10068CB82 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285731EA820E10068CB82 /* LoginInfo.swift */; };
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
 		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		564285711EA81BC60068CB82 /* SignupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupInfo.swift; sourceTree = "<group>"; };
+		564285731EA820E10068CB82 /* LoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		56A034D21E21A63B009A9710 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
@@ -82,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		564285751EA82DE10068CB82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				564285731EA820E10068CB82 /* LoginInfo.swift */,
+				564285711EA81BC60068CB82 /* SignupInfo.swift */,
+				56BB508A1E9E8E95006E4CEA /* Item.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		56BB507B1E9E8967006E4CEA /* PrinCraigslistTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +143,7 @@
 				56A034D21E21A63B009A9710 /* LoginViewController.swift */,
 				56BB50861E9E8D04006E4CEA /* ViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
-				56BB508A1E9E8E95006E4CEA /* Item.swift */,
+				564285751EA82DE10068CB82 /* Models */,
 			);
 			name = PrinCraigslist;
 			path = ParseStarterProject;
@@ -273,8 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				564285701EA5CACC0068CB82 /* ProfileViewController.swift in Sources */,
+				564285721EA81BC60068CB82 /* SignupInfo.swift in Sources */,
 				56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
+				564285741EA820E10068CB82 /* LoginInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
