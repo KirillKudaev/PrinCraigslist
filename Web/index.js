@@ -7,10 +7,13 @@ Parse.serverURL = 'http://ec2-35-163-159-109.us-west-2.compute.amazonaws.com:80/
 //ViewController methods
 //################################################################################################
 function signupUser() {
-	event.preventDefault();
 
 	var driver = new Driver();
 	console.log("about to call driver");
+   console.log($("#createFirstName").val());
+   console.log($("#createLastName").val());
+   console.log($("#createEmail").val());
+   console.log($("#createUserPass").val());
 	//Need to wait for 
 	var errors = driver.signUpUser($("#createFirstName").val().trim(), $("#createLastName").val(),
 	 $("#createEmail").val(), $("#createUserPass").val());
@@ -31,7 +34,6 @@ function signupUser() {
 }
 
 function getUser() {
-	event.preventDefault();
 
 	var driver = new Driver();
 
@@ -50,7 +52,6 @@ function getUser() {
 }
 
 function updateUser() {
-	event.preventDefault();
 
 	var driver = new Driver();
 
@@ -73,7 +74,6 @@ function updateUser() {
 }
 
 function deleteUser() {
-	event.preventDefault();
 	
 	var driver = new Driver();
 	
@@ -81,7 +81,6 @@ function deleteUser() {
 }
 
 function logoutUser() {
-	event.preventDefault();
 	
 	var driver = new Driver();
 	

@@ -39,6 +39,8 @@ function populateItems() {
 }
 
 function populateListings() {
+   //var user = Parse.User.current();
+   //user.get("")
    populatePagination();
    populateItems();
 }
