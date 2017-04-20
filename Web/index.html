@@ -1,85 +1,237 @@
 <!DOCTYPE HTML>
 
 <html>
+
 <head>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+   <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 
-	<title>PrinCraigslist</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Prin's Crägslist</title>
+   <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="index.js"></script>
+   <link rel="stylesheet" href="css/styles.css">
+   <script src="js/javascript.js"></script>
+   <script src="listings.js" type="text/javascript"></script> 
 </head>
+
 <body>
 
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Create an account</h4>
-
-  
-  <input id="createFirstName" type="text" placeholder="Enter Firstname" required /> <br/>
-  <input id="createLastName" type="text" placeholder="Enter Lastname" required /> <br/>
-  <input id="createEmail" type="text" placeholder="Enter Email" required /> <br/>
-  <input id="createUserPass" type="password" placeholder="Enter Password" required /> <br/>
-  
-  <button id="signupbtn" onclick="signupUser()">Sign up</button>
-  
-  <button id="signupbtn" onclick="getUser()">Get User</button>
-  
-</div>
-
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Update account</h4>
-
-  
-  <input id="updateFirstName" type="text" placeholder="Enter Firstname" required /> <br/>
-  <input id="updateLastName" type="text" placeholder="Enter Lastname" required /> <br/>
-  <input id="updateEmail" type="text" placeholder="Enter Email" required /> <br/>
-  <input id="updateUserPass" type="password" placeholder="Enter Password" required /> <br/>
-  <input id="updateUserOldPass" type="password" placeholder="Enter Old Password" required /> <br/>
-  
-  <button id="signupbtn" onclick="updateUser()">Sign up</button>
-  
-  <button id="signupbtn" onclick="getUser()">Get User</button>
- 
-</div>
-
-<div id="signupdiv" class="container">
-  <h2>PrinCraigslist</h2>
-  <h4>Delete account</h4>
-  
-  <button id="signupbtn" onclick="deleteUser()">Delete User</button>
-  <button id="signupbtn" onclick="logoutUser()">Logout User</button>
-</div>
-
-<div class="container">
-<h3>Login to your account</h3>
-  <div id="login">
-    <div class="form-group row">
-      <label for="Email" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="text" id="email" placeholder="email">
+   <!-- Head Navbar -->
+   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="index.htm">Principia's Crägslist</a>
+         </div>
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Create a Listing</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right" id="userNotSignedIn">
+            <li><a data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right" id="userSignedIn" style="display:none";>
+            <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+            <li><a onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+         </ul>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="password" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" id="loginPassword" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button id="loginbtn" onclick="login()" class="btn btn-primary">Sign in</button>
-      </div>
-    </div>
-  </div>
-</div>
+   </nav>
 
+   <!-- Login Modal -->
+   <div id="Login" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Login - Existing Users</h4>
+            </div>
+            <div class="modal-body">
+               <div class="form-group row">
+                  <label for="loginUsername" class="col-sm-2 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="loginUsername" placeholder="Username (Email)">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="password" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                     <input type="password" id="loginPassword" placeholder="Password">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="login()">Login</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+   <!-- Signup Modal -->
+   <div id="Signup" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Signup - New Users</h4>
+            </div>
+            <div class="modal-body">
+               <div class="form-group row">
+                  <label for="createEmail" class="col-sm-3 col-form-label">Email Address</label>
+                  <div class="col-sm-9">
+                     <input type="email" id="createEmail" placeholder="Email">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createFirstname" class="col-sm-3 col-form-label">First Name</label>
+                  <div class="col-sm-9">
+                     <input type="text" id="createFirstname" placeholder="First Name">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createLastname" class="col-sm-3 col-form-label">Last Name</label>
+                  <div class="col-sm-9">
+                     <input type="text" id="createLastname" placeholder="Last Name">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createUserPass" class="col-sm-3 col-form-label">Password</label>
+                  <div class="col-sm-9">
+                     <input type="password" id="createUserPass" placeholder="Password">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="signupUser()">Sign up</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Top Page list -->
+   <ul class="pagination" id="pagestop">
+   </ul>
+
+   <!-- Listings -->
+   <div class="panel-group">
+      <div class="panel panel-primary" id="listing1" style="display:none";>
+         <div class="panel-heading" id="listing1title">Item 1</div>
+         <div class="panel-body" id="listing1body">Item description and images</div>
+         <div class="panel-footer" id="listing1footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(1)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(1)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing2" style="display:none";>
+         <div class="panel-heading" id="listing2title">Item 2</div>
+         <div class="panel-body" id="listing2body">Item description and images</div>
+         <div class="panel-footer" id="listing2footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(2)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(2)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing3" style="display:none";>
+         <div class="panel-heading" id="listing3title">Item 3</div>
+         <div class="panel-body" id="listing3body">Item description and images</div>
+         <div class="panel-footer" id="listing3footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(3)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(3)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing4" style="display:none";>
+         <div class="panel-heading" id="listing4title">Item 4</div>
+         <div class="panel-body" id="listing4body">Item description and images</div>
+         <div class="panel-footer" id="listing4footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(4)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(4)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing5"style="display:none";>
+         <div class="panel-heading" id="listing5title">Item 5</div>
+         <div class="panel-body" id="listing5body">Item description and images</div>
+         <div class="panel-footer" id="listing5footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(5)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(5)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing6" style="display:none";>
+         <div class="panel-heading" id="listing6title">Item 6</div>
+         <div class="panel-body" id="listing6body">Item description and images</div>
+         <div class="panel-footer" id="listing6footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(6)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(6)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing7" style="display:none";>
+         <div class="panel-heading" id="listing7title">Item 7</div>
+         <div class="panel-body" id="listing7body">Item description and images</div>
+         <div class="panel-footer" id="listing7footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(7)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(7)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing8" style="display:none";>
+         <div class="panel-heading" id="listing8title">Item 8</div>
+         <div class="panel-body" id="listing8body">Item description and images</div>
+         <div class="panel-footer" id="listing8footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(8)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(8)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing9" style="display:none";>
+         <div class="panel-heading" id="listing9title">Item 9</div>
+         <div class="panel-body" id="listing9body">Item description and images</div>
+         <div class="panel-footer" id="listing9footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(9)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(9)">Delete Item</button>
+         </div>
+      </div>
+      <div class="panel panel-primary" id="listing10" style="display:none";>
+         <div class="panel-heading" id="listing10title">Item 10</div>
+         <div class="panel-body" id="listing10body">Item description and images</div>
+         <div class="panel-footer" id="listing10footer" style="display:none";>
+            <button type="button" class="btn btn-default" onclick="updateItem(10)">Edit Item</button>
+            <button type="button" class="btn btn-danger" onclick="deleteItem(10)">Delete Item</button>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bottom Page list -->
+   <ul class="pagination" id="pagesbottom">
+   </ul>
+   
+   <!-- Foot bar -->
+   <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="index.htm">Principia's Crägslist</a>
+         </div>
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Create a Listing</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right" id="userNotSignedIn">
+            <li><a data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a data-toggle="modal" data-target="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right" id="userSignedIn" style="display:none";>
+            <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+            <li><a onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+         </ul>
+      </div>
+   </nav>
+
+   
+   <script>
+      populateListings();
+   </script>
 </body>
+
 </html>
