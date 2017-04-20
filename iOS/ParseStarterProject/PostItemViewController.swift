@@ -40,6 +40,7 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
             pfItem["title"] = itemTitleTextField.text
             pfItem["description"] = itemDescription.text
             pfItem["price"] = (itemPrice.text! as NSString).floatValue
+            pfItem["userId"] = PFUser.current()?.objectId
             
             pfItem.saveInBackground { (succcess, error) in
                 
@@ -55,7 +56,6 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-
     }
     
     func showActivityIndicator() {
