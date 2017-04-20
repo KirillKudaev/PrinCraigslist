@@ -31,56 +31,56 @@ class SignupInfoTests: XCTestCase {
     }
     
     func testSUT_NoEmail() {
-        var signupInfo = SignupInfo(email: emptyString, password: password, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: emptyString, password: password, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter an email")
     }
     
     func testSUT_NoPassword() {
-        var signupInfo = SignupInfo(email: email, password: emptyString, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: emptyString, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter a password")
     }
     
     func testSUT_NoFirstName() {
-        var signupInfo = SignupInfo(email: email, password: password, firstName: emptyString, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: password, firstName: emptyString, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter First Name")
     }
     
     func testSUT_NoLastName() {
-        var signupInfo = SignupInfo(email: email, password: password, firstName: firstName, lastName: emptyString)
+        let signupInfo = SignupInfo(email: email, password: password, firstName: firstName, lastName: emptyString)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter Last Name")
     }
     
     func testSUT_ShortPassword() {
-        var signupInfo = SignupInfo(email: email, password: shortPassword, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: shortPassword, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Password has to be at least 8 characters")
     }
     
     func testSUT_LongPassword() {
-        var signupInfo = SignupInfo(email: email, password: longString, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: longString, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Password has to be less then 35 characters")
     }
     
     func testSUT_LongFirstName() {
-        var signupInfo = SignupInfo(email: email, password: password, firstName: longString, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: password, firstName: longString, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "First Name has to be less then 35 characters")
     }
     
     func testSUT_LongLastName() {
-        var signupInfo = SignupInfo(email: email, password: password, firstName: firstName, lastName: longString)
+        let signupInfo = SignupInfo(email: email, password: password, firstName: firstName, lastName: longString)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Last Name has to be less then 35 characters")

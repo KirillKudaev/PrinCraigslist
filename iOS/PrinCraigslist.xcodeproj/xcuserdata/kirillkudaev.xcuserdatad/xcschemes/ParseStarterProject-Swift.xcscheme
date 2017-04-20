@@ -38,6 +38,16 @@
                ReferencedContainer = "container:PrinCraigslist.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5642858D1EA97D7D0068CB82"
+               BuildableName = "PrinCraigslistUITests.xctest"
+               BlueprintName = "PrinCraigslistUITests"
+               ReferencedContainer = "container:PrinCraigslist.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
