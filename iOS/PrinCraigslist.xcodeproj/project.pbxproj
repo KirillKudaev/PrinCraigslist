@@ -19,6 +19,7 @@
 		564285831EA85C9B0068CB82 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285821EA85C9B0068CB82 /* ItemViewController.swift */; };
 		564285851EA867320068CB82 /* PostItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285841EA867320068CB82 /* PostItemInfo.swift */; };
 		564285871EA869C20068CB82 /* PostItemInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285861EA869C20068CB82 /* PostItemInfoTests.swift */; };
+		564285911EA97D7D0068CB82 /* PrinCraigslistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285901EA97D7D0068CB82 /* PrinCraigslistUITests.swift */; };
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
 		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
@@ -34,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		564285931EA97D7D0068CB82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81BA81441A49DA1800E65899;
+			remoteInfo = PrinCraigslist;
+		};
 		56BB507F1E9E8967006E4CEA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
@@ -56,6 +64,9 @@
 		564285821EA85C9B0068CB82 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		564285841EA867320068CB82 /* PostItemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemInfo.swift; sourceTree = "<group>"; };
 		564285861EA869C20068CB82 /* PostItemInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemInfoTests.swift; sourceTree = "<group>"; };
+		5642858E1EA97D7D0068CB82 /* PrinCraigslistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		564285901EA97D7D0068CB82 /* PrinCraigslistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistUITests.swift; sourceTree = "<group>"; };
+		564285921EA97D7D0068CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56A034D21E21A63B009A9710 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
@@ -77,6 +88,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5642858B1EA97D7D0068CB82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56BB50771E9E8967006E4CEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,6 +129,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		5642858F1EA97D7D0068CB82 /* PrinCraigslistUITests */ = {
+			isa = PBXGroup;
+			children = (
+				564285901EA97D7D0068CB82 /* PrinCraigslistUITests.swift */,
+				564285921EA97D7D0068CB82 /* Info.plist */,
+			);
+			path = PrinCraigslistUITests;
+			sourceTree = "<group>";
+		};
 		56BB507B1E9E8967006E4CEA /* PrinCraigslistTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +165,7 @@
 				81BA81471A49DA1800E65899 /* PrinCraigslist */,
 				814C3AC51B69877600E307BB /* Resources */,
 				56BB507B1E9E8967006E4CEA /* PrinCraigslistTests */,
+				5642858F1EA97D7D0068CB82 /* PrinCraigslistUITests */,
 				81BA816A1A49DB5600E65899 /* Frameworks */,
 				81BA81461A49DA1800E65899 /* Products */,
 			);
@@ -148,6 +176,7 @@
 			children = (
 				81BA81451A49DA1800E65899 /* PrinCraigslist.app */,
 				56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */,
+				5642858E1EA97D7D0068CB82 /* PrinCraigslistUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,6 +225,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5642858D1EA97D7D0068CB82 /* PrinCraigslistUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 564285951EA97D7D0068CB82 /* Build configuration list for PBXNativeTarget "PrinCraigslistUITests" */;
+			buildPhases = (
+				5642858A1EA97D7D0068CB82 /* Sources */,
+				5642858B1EA97D7D0068CB82 /* Frameworks */,
+				5642858C1EA97D7D0068CB82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				564285941EA97D7D0068CB82 /* PBXTargetDependency */,
+			);
+			name = PrinCraigslistUITests;
+			productName = PrinCraigslistUITests;
+			productReference = 5642858E1EA97D7D0068CB82 /* PrinCraigslistUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		56BB50791E9E8967006E4CEA /* PrinCraigslistTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56BB50831E9E8967006E4CEA /* Build configuration list for PBXNativeTarget "PrinCraigslistTests" */;
@@ -241,6 +288,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
+					5642858D1EA97D7D0068CB82 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81BA81441A49DA1800E65899;
+					};
 					56BB50791E9E8967006E4CEA = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -268,11 +320,19 @@
 			targets = (
 				81BA81441A49DA1800E65899 /* PrinCraigslist */,
 				56BB50791E9E8967006E4CEA /* PrinCraigslistTests */,
+				5642858D1EA97D7D0068CB82 /* PrinCraigslistUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5642858C1EA97D7D0068CB82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56BB50781E9E8967006E4CEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,6 +352,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5642858A1EA97D7D0068CB82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				564285911EA97D7D0068CB82 /* PrinCraigslistUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56BB50761E9E8967006E4CEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +393,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		564285941EA97D7D0068CB82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81BA81441A49DA1800E65899 /* PrinCraigslist */;
+			targetProxy = 564285931EA97D7D0068CB82 /* PBXContainerItemProxy */;
+		};
 		56BB50801E9E8967006E4CEA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81BA81441A49DA1800E65899 /* PrinCraigslist */;
@@ -345,6 +418,45 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		564285961EA97D7D0068CB82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = PrinCraigslistUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KirillKudaev.PrinCraigslistUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PrinCraigslist;
+			};
+			name = Debug;
+		};
+		564285971EA97D7D0068CB82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = PrinCraigslistUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KirillKudaev.PrinCraigslistUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PrinCraigslist;
+			};
+			name = Release;
+		};
 		56BB50811E9E8967006E4CEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -510,6 +622,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		564285951EA97D7D0068CB82 /* Build configuration list for PBXNativeTarget "PrinCraigslistUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				564285961EA97D7D0068CB82 /* Debug */,
+				564285971EA97D7D0068CB82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		56BB50831E9E8967006E4CEA /* Build configuration list for PBXNativeTarget "PrinCraigslistTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

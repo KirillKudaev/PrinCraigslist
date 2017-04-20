@@ -31,14 +31,14 @@ class LoginInfoTests: XCTestCase {
     }
     
     func testSUT_NoEmail() {
-        var signupInfo = SignupInfo(email: emptyString, password: password, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: emptyString, password: password, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter an email")
     }
     
     func testSUT_NoPassword() {
-        var signupInfo = SignupInfo(email: email, password: emptyString, firstName: firstName, lastName: lastName)
+        let signupInfo = SignupInfo(email: email, password: emptyString, firstName: firstName, lastName: lastName)
         
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter a password")
