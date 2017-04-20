@@ -18,19 +18,13 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func post(_ sender: Any) {
         
-        var pfItem = PFObject(className:"Item")
+        let pfItem = PFObject(className:"Item")
         
-        if itemTitleTextField.text == "" {
+        let postItemInfo = PostItemInfo(itemName: itemTitleTextField.text!, price: (itemPrice.text! as NSString).floatValue, description: itemDescription.text!)
+        
+        if postItemInfo.error {
             
-            createOkAlert(title: "Error in form", message: "Please enter a title")
-            
-        } else if itemDescription.text == "" {
-            
-            createOkAlert(title: "Error in form", message: "Please provide a description")
-            
-        } else if itemPrice.text == "" {
-            
-            createOkAlert(title: "Error in form", message: "Please provide a price")
+            createOkAlert(title: "Error in form", message: postItemInfo.errorMessage!)
             
         } else {
             
@@ -52,6 +46,7 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     self.createOkAlert(title: "Posted!", message: "Your item has been posted!")
                     self.itemTitleTextField.text = "";
+                    self.itemPrice.text = "";
                     self.itemDescription.text = "";
                 }
             }
