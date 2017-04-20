@@ -1,9 +1,8 @@
 //
 //  PostItemViewController.swift
-//  Healings
+//  PrinCraigslist
 //
 //  Created by Kirill Kudaev on 4/19/17.
-//  Copyright © 2017 Parse. All rights reserved.
 //
 
 import UIKit
@@ -40,6 +39,8 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
             pfItem["title"] = itemTitleTextField.text
             pfItem["description"] = itemDescription.text
             pfItem["price"] = (itemPrice.text! as NSString).floatValue
+            pfItem["userId"] = PFUser.current()?.objectId
+            pfItem["userEmail"] = PFUser.current()?.email
             
             pfItem.saveInBackground { (succcess, error) in
                 
@@ -55,7 +56,6 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-
     }
     
     func showActivityIndicator() {
