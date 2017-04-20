@@ -155,13 +155,14 @@
         <!--Items for Sale-->
         <scene sceneID="gpc-ur-ojR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HMV-B4-OMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="EaC-MP-bHJ" customClass="HomeTableViewController" customModule="PrinCraigslist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="195" sectionHeaderHeight="28" sectionFooterHeight="28" id="TFP-ma-dV4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="195" id="D22-GA-ejx" customClass="HealingCell" customModule="PrinCraigslist" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="195" id="D22-GA-ejx" customClass="ItemCell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="195"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D22-GA-ejx" id="xss-nl-8qr">
@@ -182,9 +183,8 @@
                         </segue>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HMV-B4-OMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704.8000000000002" y="-106.59670164917542"/>
+            <point key="canvasLocation" x="2498" y="-107"/>
         </scene>
         <!--Item View Controller-->
         <scene sceneID="c7C-10-QcH">
@@ -202,11 +202,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c20-l9-R39" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476" y="-99.400299850074973"/>
+            <point key="canvasLocation" x="3204" y="-107"/>
         </scene>
         <!--Explore-->
         <scene sceneID="yok-qs-DKb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HiO-En-DiO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="gtg-nH-cad" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Explore" id="Nv3-LY-g9S">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -219,7 +220,6 @@
                         <segue destination="EaC-MP-bHJ" kind="relationship" relationship="rootViewController" id="x0g-Ay-qRz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HiO-En-DiO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1758" y="-107"/>
         </scene>
@@ -234,32 +234,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="gtg-nH-cad" kind="relationship" relationship="viewControllers" id="gYi-qI-fza"/>
-                        <segue destination="3Ho-Lf-uXQ" kind="relationship" relationship="viewControllers" id="NjM-8h-cnc"/>
+                        <segue destination="AFh-ct-tUb" kind="relationship" relationship="viewControllers" id="w6T-3m-gxm"/>
                         <segue destination="kHT-kC-Qzd" kind="relationship" relationship="viewControllers" id="kf2-wj-o8x"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YT-kX-mFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="908" y="123"/>
-        </scene>
-        <!--Post an Item for Sale-->
-        <scene sceneID="H8k-UL-23e">
-            <objects>
-                <viewController id="Xed-F4-5cH" customClass="ShareViewController" customModule="PrinCraigslist" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hLU-zm-7EQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="V2I-n4-FT5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7HU-HU-bsd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Post an Item for Sale" id="uAd-4K-lB5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wiS-kx-HJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3631.1999999999998" y="669.71514242878561"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="T6y-0h-nPq">
@@ -288,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ty1-4k-RmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847.2" y="940.47976011994012"/>
+            <point key="canvasLocation" x="1706" y="940"/>
         </scene>
         <!--More...-->
         <scene sceneID="Z9t-lE-Zb8">
@@ -309,28 +290,103 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONr-fr-RHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="940.47976011994012"/>
+            <point key="canvasLocation" x="646" y="940"/>
         </scene>
-        <!--Post an Item-->
-        <scene sceneID="0tN-rt-RGN">
+        <!--Post Item for Sale-->
+        <scene sceneID="lQC-xg-u2d">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Ho-Lf-uXQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Post an Item" id="qiN-Vh-QhO">
+                <viewController id="AXn-71-VEz" customClass="PostItemViewController" customModule="PrinCraigslist" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bdS-Px-SP4"/>
+                        <viewControllerLayoutGuide type="bottom" id="J7G-Hm-P1I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GXN-a8-RP9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CSz-7a-g2d">
+                                <rect key="frame" x="16" y="119" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description goes here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BW1-eX-ex8">
+                                <rect key="frame" x="16" y="218" width="343" height="281"/>
+                                <color key="backgroundColor" red="0.92375041449999995" green="0.92375041449999995" blue="0.92375041449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="281" id="kvV-cS-I33"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDw-kK-dNQ">
+                                <rect key="frame" x="90" y="551" width="194" height="50"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.78039215689999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6kf-Ww-E73"/>
+                                    <constraint firstAttribute="width" constant="194" id="K3s-EI-aAa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                                <state key="normal" title="POST ITEM">
+                                    <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="post:" destination="AXn-71-VEz" eventType="touchUpInside" id="Tcf-Sc-5pI"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-fg-dNg">
+                                <rect key="frame" x="16" y="157" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BW1-eX-ex8" firstAttribute="leading" secondItem="GXN-a8-RP9" secondAttribute="leadingMargin" id="3bY-y0-bhV"/>
+                            <constraint firstItem="hD0-fg-dNg" firstAttribute="leading" secondItem="GXN-a8-RP9" secondAttribute="leadingMargin" id="4v6-zz-Rq4"/>
+                            <constraint firstItem="HDw-kK-dNQ" firstAttribute="centerX" secondItem="GXN-a8-RP9" secondAttribute="centerX" id="8CS-rX-8Y9"/>
+                            <constraint firstItem="BW1-eX-ex8" firstAttribute="trailing" secondItem="GXN-a8-RP9" secondAttribute="trailingMargin" id="AGk-xV-gsb"/>
+                            <constraint firstItem="hD0-fg-dNg" firstAttribute="trailing" secondItem="GXN-a8-RP9" secondAttribute="trailingMargin" id="BfC-1D-58H"/>
+                            <constraint firstItem="CSz-7a-g2d" firstAttribute="leading" secondItem="GXN-a8-RP9" secondAttribute="leadingMargin" id="C0e-YH-nXd"/>
+                            <constraint firstItem="hD0-fg-dNg" firstAttribute="top" secondItem="CSz-7a-g2d" secondAttribute="bottom" constant="8" id="FdR-g8-GEC"/>
+                            <constraint firstItem="J7G-Hm-P1I" firstAttribute="top" secondItem="HDw-kK-dNQ" secondAttribute="bottom" constant="17" id="K1I-Bu-4KW"/>
+                            <constraint firstItem="CSz-7a-g2d" firstAttribute="trailing" secondItem="GXN-a8-RP9" secondAttribute="trailingMargin" id="ish-4Z-3eG"/>
+                            <constraint firstItem="BW1-eX-ex8" firstAttribute="top" secondItem="hD0-fg-dNg" secondAttribute="bottom" constant="31" id="pWO-EJ-N7P"/>
+                            <constraint firstItem="CSz-7a-g2d" firstAttribute="top" secondItem="bdS-Px-SP4" secondAttribute="bottom" constant="55" id="yec-jQ-zat"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Post Item for Sale" id="UxY-tg-WbY"/>
+                    <connections>
+                        <outlet property="itemDescription" destination="BW1-eX-ex8" id="YVW-ih-kli"/>
+                        <outlet property="itemPrice" destination="hD0-fg-dNg" id="l3c-Xk-2Cy"/>
+                        <outlet property="itemTitleTextField" destination="CSz-7a-g2d" id="akt-S1-mzO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmz-Qq-brS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3394" y="625"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="Sb1-sO-c38">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AFh-ct-tUb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Post" id="Aao-vd-3ja">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eN6-Kl-R0y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kr3-BO-kau">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Xed-F4-5cH" kind="relationship" relationship="rootViewController" id="wCe-c0-U0t"/>
+                        <segue destination="AXn-71-VEz" kind="relationship" relationship="rootViewController" id="pCH-yS-m1G"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dix-wH-j5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qX1-Yr-XEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692" y="669.71514242878561"/>
+            <point key="canvasLocation" x="2678" y="625"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
