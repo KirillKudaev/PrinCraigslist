@@ -26,7 +26,7 @@ class HomeTableViewController: UITableViewController {
                     
                     var item: Item
                                     
-                        item = Item(userName: object["userId"] as! String, title: object["title"] as! String, description: object["description"] as! String, price: (object["price"] as! Float), createdAt: object.createdAt!, updatedAt: object.updatedAt!)
+                        item = Item(userName: object["userEmail"] as! String, title: object["title"] as! String, description: object["description"] as! String, price: (object["price"] as! Float), createdAt: object.createdAt!, updatedAt: object.updatedAt!)
                     
                     self.itemArray.append(item)
                 }
@@ -88,6 +88,8 @@ class HomeTableViewController: UITableViewController {
         
         cell.titleLabel.text = self.itemArray[indexPath.row].title
         cell.descriptionLabel.text = self.itemArray[indexPath.row].description
+        
+        cell.userNameLabel.text = self.itemArray[indexPath.row].userName
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy HH:mm:ss"
@@ -152,8 +154,8 @@ class HomeTableViewController: UITableViewController {
                 let cell = tableView.cellForRow(at: path!) as! ItemCell
                 
                 destination.username = (cell.userNameLabel.text)!
-                destination.healingTitle = (cell.titleLabel.text)!
-                destination.healingContent = (cell.descriptionLabel.text)!
+                destination.itemTitle = (cell.titleLabel.text)!
+                destination.itemContent = (cell.descriptionLabel.text)!
                 destination.time = (cell.lblTime.text)!
             }
         }

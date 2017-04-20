@@ -40,6 +40,7 @@ class PostItemViewController: UIViewController, UITextFieldDelegate {
             pfItem["description"] = itemDescription.text
             pfItem["price"] = (itemPrice.text! as NSString).floatValue
             pfItem["userId"] = PFUser.current()?.objectId
+            pfItem["userEmail"] = PFUser.current()?.email
             
             pfItem.saveInBackground { (succcess, error) in
                 
