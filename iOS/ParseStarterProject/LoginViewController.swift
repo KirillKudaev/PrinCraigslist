@@ -26,8 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if signupMode {
             
-            let signupInfo = SignupInfo(email: emailTextField.text!, password: passwordTextField.text!,
-                firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
+            let signupInfo = SignupInfo(email: emailTextField.text!, password: passwordTextField.text!, firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
             
             if signupInfo.error {
                 formError = true
