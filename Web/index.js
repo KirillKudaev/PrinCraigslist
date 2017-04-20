@@ -12,7 +12,7 @@ function signupUser() {
 	var driver = new Driver();
 	console.log("about to call driver");
 	//Need to wait for 
-	var errors = driver.signUpUser($("#createFirstName").val().trim(), $("#createLastName").val(),
+	var errors = driver.signUpUser($("#createFirstName").val(), $("#createLastName").val(),
 	 $("#createEmail").val(), $("#createUserPass").val());
 		
 	console.log("before validation");
@@ -87,6 +87,56 @@ function logoutUser() {
 	
 	driver.logoutUser();
 }
+
+
+function loginUser() {
+	event.preventDefault();
+	
+	var driver = new Driver();
+	
+	driver.loginUser($("#loginEmail").val(), $("#loginPassword").val());
+}
+
+function createItem() {
+	event.preventDefault();
+	
+	var driver = new Driver();
+	
+	var errors = driver.createItem($("#createTitle").val(), $("#createDescription").val(),
+	 null, $("#createCategory").val(), $("#createPrice").val());
+
+	if (errors.length > 0) {
+		console.log(errors);
+		errors.forEach(function(err) {
+			console.log("error");
+			alert("Error - " + err.tag + " : " + err.desc);
+		});
+	}
+	else 
+		console.log("no errors");	
+	
+}
+
+
+function getItem () {
+	event.preventDefault();
+	
+	var driver = new Driver();
+	
+	var itemId = "vHOMGyUwwC";
+	
+	//Need to wait for 
+	var item = driver.getItem(itemId);
+	
+	console.log(item.get("title"));
+	
+	/*
+	console.log("title: " + item.title);
+	console.log("desc: " + item.description);
+	console.log("cat: " + item.category);
+	console.log("price: " + item.price);
+	*/
+}
 //################################################################################################
 
 
@@ -152,10 +202,6 @@ Driver.prototype = {
 	getUser : function() {
 		//Get current user
 		var user = new Parse.User.current();
-		//var user = new User (userTemp.get("firstName"), 
-		//userTemp.get("lastName"), userTemp.get("email"));
-		
-		
 		
 		return {
 			"firstName" : user.get("firstName"),
@@ -225,8 +271,172 @@ Driver.prototype = {
 		
 		Parse.User.logOut();
 		
+	},
+	
+	loginUser : function(email, password) {
+		var email = email;
+		var pass = password;
+
+		
+
+		Parse.User.logIn(email, pass, {
+			success: function(user) {
+				
+			},
+			error: function(user, error) {
+			}
+		});
+		
+	},
+	
+	createItem : function(title, description, picture, category, price) {
+		
+		console.log("title: " + title);
+		console.log("description: " + description);
+		console.log("category: " + category);
+		console.log("price: " + price);
+		
+		var vld = new Validator();
+		var errors = vld.validateCreateItem(title, description, picture, category, price);
+		
+		if (errors.length > 0)
+			return errors;
+		
+		var Item = Parse.Object.extend("Item");
+		var item = new Item();
 		
 		
+		//var item = Parse.Item();
+		var user = Parse.User.current();
+		
+		//set values for item - postedDate
+		item.set("title", title);
+		item.set("description", description);
+		//item.set("picture", picture);
+		item.set("category", category);
+		item.set("price", parseInt(price, 10));
+		item.set("userId", user.get("objectId"));
+		item.set("userEmail", user.get("email"));
+		
+		
+		item.save(null, {
+			success: function(item) {
+			
+				alert('New object created with objectId: ' + item.id);
+			},
+			error: function(item, error) {
+			
+				alert('Failed to create new object, with error code: ' + error.message);
+			}
+		});
+		
+		
+		
+		return [];
+	}, 
+	
+	getItem : function (itemId) {
+		//var Item = Parse.Object.extend("Item");
+		//var query = new Parse.Query(Item);
+		//var query = new Parse.Query("User").equalTo("firstName", "Gavin"); 
+		var query = new Parse.Query("Item").equalTo("title", "bbb"); 
+		
+		return query.find().then(function(items) {
+			console.log(items[0].get("userEmail"));
+			console.log(items[0].get("description"));
+			
+			return items[0];
+			
+			/*{
+				title : items[0].get("title"),
+				description : items[0].get("description"),
+				category : items[0].get("category"),
+				price : items[0].get("price")
+			};*/
+		});
+		
+		
+		//query.equalTo("objectId", itemId);
+		
+		/*
+		return query.find().then(function(results) {
+			var item = results[0];
+			console.log(item);
+			
+			if (item)
+			{
+				
+				return {
+					"title"        : item.get("title"),
+					"description"  : item.get("description"),
+					"category"     : item.get("category"),
+					"price"        : item.get("price")
+				
+				};
+			}
+			else
+			{
+				
+				return Parse.Promise.error(error);
+				
+			}
+		}, function(error) {
+			return Parse.Promise.error(error);
+		});    
+		*/
+/*
+		query.find({
+		    success: function(item) {
+				
+				alert("Error: " + error.code + " " + error.message);
+				
+				return {
+					"title"        : item.get("title"),
+					"description"  : item.get("description"),
+					"category"     : item.get("category"),
+					"price"        : item.get("price")
+				
+				};
+			},
+			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+		  }
+		});
+		*/
+	},
+	
+	
+	updateItem : function(title, description, picture, category, price) {
+		var errors = []
+		var vld = new Validator();
+		
+		errors = vld.validateUpdateItem(title, description, picture, category, price);
+		
+		if (errors.length > 0)
+			return errors;
+		
+		
+		var Item = Parse.Object.extend("Item");
+		var item = new Item();
+		
+		
+		//Get current user
+		var user = new Parse.User.current();
+		
+		//Add validation
+		if (title.length > 0)
+			item.set("title", title);
+		if (description.length > 0)
+			item.set("description", description);
+		//if (picture)
+			//item.set("picture", picture);
+		if (category.length > 0)
+			item.set("category", category);
+		if (price.length > 0)
+			item.set("price", parseInt(price, 10));
+		
+		
+		return [];	
 	}
 	
 	

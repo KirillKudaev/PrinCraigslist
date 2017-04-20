@@ -16,28 +16,29 @@ function Validator() {
 	//this.errors;
 	
 	this.tags = {
-		missingField: "missingField",    // Field missing from request. 
-		badValue: "Bad Value",            // Field has bad value.  
-		notFound: "notFound",            // Entity not present in DB
-		badLogin: "badLogin",            // Email/password combination invalid
-		dupEmail: "dupEmail",            // Email duplicates an existing email
-		noTerms: "noTerms",              // Acceptance of terms is required.
-		forbiddenField: "forbiddenField", // Field not alowed to be altered
-		noOldPwd: "noOldPwd",            // Change of password requires an old password
+		missingField: "Missing Field",         // Field missing from request. 
+		badValue: "Bad Value",                 // Field has bad value.  
+		notFound: "Not Found",                 // Entity not present in DB
+		badLogin: "Bad Login",                 // Email/password combination invalid
+		forbiddenField: "forbiddenField",      // Field not alowed to be altered
+		noOldPwd: "No Old Password",           // Change of password requires an old password
 		oldPwdMismatch: "Old Password Failed", // Old Password doesn't match
-		badCategory:"badCategory"        // Category is not found in list
+		badCategory:"Bad Category"             // Category is not found in list
 	};
 	
 	//
 	this.desc = {
-		excFirstNameMax : "First name must be less than " + this.firstNameMax + " characters.", 
-		excLastNameMax  : "Last name must be less than " + this.lastNameMax + " characters.",
-		excEmailMax     : "Email must be less than " + this.emailMax + " characters.",
-		excPassMax      : "Last name must be less than " + this.lastNameMax + " characters.",
-		excPassMin      : "Password must be at least " + this.passwordMin + " characters."
+		firstNameMax   : "First name must be less than " + this.firstNameMax + " characters.", 
+		lastNameMax    : "Last name must be less than " + this.lastNameMax + " characters.",
+		emailMax       : "Email must be less than " + this.emailMax + " characters.",
+		passwordMax    : "Last name must be less than " + this.lastNameMax + " characters.",
+		passwordMin    : "Password must be at least " + this.passwordMin + " characters.",
+		titleMax       : "Title must be less than " + this.titleMax + " characters.",
+		descriptionMax : "Description must be less than " + this.descriptionMax + " characters.",
+		vldCategory    : "Valid categories are: Books, Bikes, Electronics, Clothing, Jobs, or Other",
+		vldPicFormat   : "Valid picture format is only .jpg at this time",
+		oldPassFail    : "Password validation failed."
 	};
-	
-	
 }
 
 
@@ -76,7 +77,7 @@ Validator.prototype = {
 		
 		errors = errors.concat(this.validateItemPicture(picture));
 		
-		errors = errors.concat(this.validateItemCategories(category));
+		errors = errors.concat(this.validateItemCategories(picture));
 		
 		errors = errors.concat(this.validateItemPrice(price));
 		
@@ -107,7 +108,7 @@ Validator.prototype = {
 			
 			errors.push({
 				"tag" : this.tags.badValue, 
-				"desc" : this.desc.excFirstNameMax
+				"desc" : this.desc.firstNameMax
 			});
 		
 		
@@ -115,28 +116,28 @@ Validator.prototype = {
 			
 			errors.push({
 				"tag" : this.tags.badValue, 
-				"desc" : this.desc.excLastNameMax
+				"desc" : this.desc.lastNameMax
 			});
 		
 		if (email && email.length > 0 && email.length > this.emailMax)
 			
 			errors.push({
 				"tag" : this.tags.badValue, 
-				"desc" : this.desc.excEmailMax
+				"desc" : this.desc.emailMax
 			});
 		
 		if (password && password.length > 0 && password.length > this.passwordMax)
 			
 			errors.push({
 				"tag" : this.tags.badValue, 
-				"desc" : this.desc.excPassMax 
+				"desc" : this.desc.passwordMax 
 			});
 		
 		if (password && password.length > 0 && password.length < this.passwordMin)
 			
 			errors.push({
 				"tag" : this.tags.badValue, 
-				"desc" : this.desc.excPassMin 
+				"desc" : this.desc.passwordMin 
 			});
 		
 		
@@ -184,7 +185,7 @@ Validator.prototype = {
 			    error: function(error) {
 				   errors.push({
 					   "tag" : this.tags.oldPwdFailed, 
-					   "desc" : "Password validation failed."
+					   "desc" : this.desc.oldPassFail
 				   });
 			  }
 			});
