@@ -36,12 +36,12 @@ struct PostItemInfo {
         } else if description == "" {
             
             error = true
-            errorMessage = "Please enter a desription"
+            errorMessage = "Please enter a description"
             
-        } else if itemName.characters.count > 80 {
+        } else if itemName.characters.count > 50 {
             
             error = true
-            errorMessage = "title cannot exceed 80 characters"
+            errorMessage = "Title cannot exceed 50 characters"
             
         }
     }

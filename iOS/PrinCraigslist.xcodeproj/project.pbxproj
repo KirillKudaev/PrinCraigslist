@@ -18,6 +18,7 @@
 		564285811EA85C800068CB82 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285801EA85C800068CB82 /* ItemCell.swift */; };
 		564285831EA85C9B0068CB82 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285821EA85C9B0068CB82 /* ItemViewController.swift */; };
 		564285851EA867320068CB82 /* PostItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285841EA867320068CB82 /* PostItemInfo.swift */; };
+		564285871EA869C20068CB82 /* PostItemInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285861EA869C20068CB82 /* PostItemInfoTests.swift */; };
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
 		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 		564285801EA85C800068CB82 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		564285821EA85C9B0068CB82 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		564285841EA867320068CB82 /* PostItemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemInfo.swift; sourceTree = "<group>"; };
+		564285861EA869C20068CB82 /* PostItemInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItemInfoTests.swift; sourceTree = "<group>"; };
 		56A034D21E21A63B009A9710 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				56BB507E1E9E8967006E4CEA /* Info.plist */,
 				564285761EA8335E0068CB82 /* SignupInfoTests.swift */,
 				564285781EA833B20068CB82 /* LoginInfoTests.swift */,
+				564285861EA869C20068CB82 /* PostItemInfoTests.swift */,
 			);
 			path = PrinCraigslistTests;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */,
 				56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */,
 				564285771EA8335E0068CB82 /* SignupInfoTests.swift in Sources */,
+				564285871EA869C20068CB82 /* PostItemInfoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
