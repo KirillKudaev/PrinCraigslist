@@ -1,9 +1,8 @@
 //
 //  PostItemViewController.swift
-//  Healings
+//  PrinCraigslist
 //
 //  Created by Kirill Kudaev on 4/19/17.
-//  Copyright © 2017 Parse. All rights reserved.
 //
 
 import UIKit
