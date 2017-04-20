@@ -43,5 +43,4 @@ class LoginInfoTests: XCTestCase {
         XCTAssertEqual(signupInfo.error, true)
         XCTAssertEqual(signupInfo.errorMessage, "Please enter a password")
     }
-    
 }
