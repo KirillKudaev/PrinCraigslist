@@ -339,7 +339,7 @@ Driver.prototype = {
 		//item.set("picture", picture);
 		item.set("category", category);
 		item.set("price", parseInt(price, 10));
-		item.set("userId", user.get("objectId"));
+		item.set("userId", user.id);
 		item.set("userEmail", user.get("email"));
 		
 		
@@ -388,7 +388,6 @@ Driver.prototype = {
 	
 	updateItem : function(itemId, title, description, picture, category, price, cb) {
 		var errors = []
-		//var item;
 		var vld = new Validator();
 		
 		
@@ -397,36 +396,65 @@ Driver.prototype = {
 		if (errors.length > 0)
 			return errors;
 		
+		this.queryAndUpdateItem(itemId, title, description, picture, category, price, 
+		 function (item, title, description, picture, category, price) {
+			console.log("should get herrer!!!!!!");
+			console.log(item);
+			if (title && title.trim().length > 0) {
+				console.log("changing title");
+				item.set("title", title);
+			}
+			if (description && description.trim().length > 0)
+				item.set("description", description);
+			//if (picture && picture.trim().length > 0)
+				//item.set("picture", picture);
+			if (category && category.trim().length > 0)
+				item.set("category", category);
+			if (price && price.trim().length > 0)
+				item.set("price", parseInt(price, 10));
+			
+			item.save();
+			
+		});
 		
+		
+						
+		
+		return [];
+	},
+
+//############################################
+//Private
+
+	queryAndUpdateItem : 
+	 function (itemId, title, description, picture, category, price, cb) {
 		//Get object and update it
 		//var Item = Parse.Object.extend("Item");
 		var query = new Parse.Query("Item");
 		query.equalTo("objectId", itemId);
-		query.first({
-			success: function(Item) {
-				Item.save({
-					success: function (item) {
-						console.log("inside item save success");
-						if (title && title.trim().length > 0)
-							item.set("title", title);
-						if (description && description.trim().length > 0)
-							item.set("description", description);
-						//if (picture && picture.trim().length > 0)
-							//item.set("picture", picture);
-						if (category && category.trim().length > 0)
-							item.set("category", category);
-						if (price && price.trim().length > 0)
-							item.set("price", parseInt(price, 10));
-						 
-					}
-				});
-										 
-				cb(); //call the callback
+		query.find({
+			
+			success: function(Items) {
+				console.log("title in find " + itemId);
+				console.log("title in find " + title);
+				cb(Items[0], title, description, picture, category, price);
 			},
 			error: function(error){
 			}
 		});	
-	}	
+	}
+	
+	
+};
+
+var g_title;
+
+function Item() {
+	this.title = "";
+	this.description = "";
+	this.category = "";
+	this.price = "";
+	this.id = "";
 };
 
 
