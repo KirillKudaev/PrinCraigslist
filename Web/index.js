@@ -161,6 +161,18 @@ function updateItem() {
 }
 
 
+function deleteItem() {
+	event.preventDefault();
+
+	var driver = new Driver();
+	console.log($("#deleteItemId").val());
+	driver.deleteItem($("#deleteItemId").val());
+	
+	
+	
+}
+
+
 //################################################################################################
 
 
@@ -422,6 +434,29 @@ Driver.prototype = {
 		
 		return [];
 	},
+	
+	deleteItem : function(itemId) {
+		var query = new Parse.Query("Item");
+		query.equalTo("objectId", itemId);
+		query.find({
+			success: function(items) {
+				console.log("itemId to delete: " + itemId);
+				console.log(items[0]);
+				items[0].destroy({
+					success: function(){
+						console.log("success!!!");
+					},
+					error : function(error) {
+						console.log("error!!!");
+					}
+				});
+			},
+			error: function(error){
+				
+			}
+		});
+		
+	},
 
 //############################################
 //Private
@@ -434,10 +469,10 @@ Driver.prototype = {
 		query.equalTo("objectId", itemId);
 		query.find({
 			
-			success: function(Items) {
+			success: function(items) {
 				console.log("title in find " + itemId);
 				console.log("title in find " + title);
-				cb(Items[0], title, description, picture, category, price);
+				cb(items[0], title, description, picture, category, price);
 			},
 			error: function(error){
 			}
@@ -445,16 +480,6 @@ Driver.prototype = {
 	}
 	
 	
-};
-
-var g_title;
-
-function Item() {
-	this.title = "";
-	this.description = "";
-	this.category = "";
-	this.price = "";
-	this.id = "";
 };
 
 
