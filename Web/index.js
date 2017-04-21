@@ -118,25 +118,49 @@ function createItem() {
 }
 
 
-function getItem () {
+function getItem() {
 	event.preventDefault();
-	
+	var item;
 	var driver = new Driver();
 	
-	var itemId = "vHOMGyUwwC";
+	var itemCat = "Book"; //$("#searchItemCategory").val();
+	var titleContains = "B"; // $("#searchItemTitle").val();
 	
-	//Need to wait for 
-	var item = driver.getItem(itemId);
 	
-	console.log(item.get("title"));
-	
-	/*
-	console.log("title: " + item.title);
-	console.log("desc: " + item.description);
-	console.log("cat: " + item.category);
-	console.log("price: " + item.price);
-	*/
+	//call the function
+	driver.getItem(itemCat, titleContains, function(item) {
+		console.log("title: " + item[0].get("title"));
+		console.log("desc: " + item[0].get("description"));
+		console.log("category: " + item[0].get("category"));
+		console.log("price: " + item[0].get("price"));
+		console.log("id: " + item[0].get("objectId"));
+		console.log("userId: " + item[0].get("userId"));
+		console.log("userEmail: " + item[0].get("userEmail"));
+	});
 }
+
+function updateItem() {
+	event.preventDefault();
+
+	var driver = new Driver();
+
+	var errors = driver.updateItem("UfZKQDYQsh"/*$("#itemId").val()*/, $("#updateTitle").val(), $("#updateDescription").val(),
+		null, $("#updateCategory").val(), $("#updatePrice").val());
+
+	
+	if (errors.length > 0) {
+		console.log(errors);
+		errors.forEach(function(err) {
+			console.log("error");
+			alert("Error - " + err.tag + " : " + err.desc);
+		});
+	}
+	else 
+		console.log("no errors");
+	
+}
+
+
 //################################################################################################
 
 
@@ -330,85 +354,43 @@ Driver.prototype = {
 			}
 		});
 		
-		
-		
 		return [];
 	}, 
 	
-	getItem : function (itemId) {
-		//var Item = Parse.Object.extend("Item");
-		//var query = new Parse.Query(Item);
-		//var query = new Parse.Query("User").equalTo("firstName", "Gavin"); 
-		var query = new Parse.Query("Item").equalTo("title", "bbb"); 
+	getItem : function (itemCat, titleContains, cb) {
+		var Item = Parse.Object.extend("Item");
+		var mainQuery = new Parse.Query(Item);
+		var query1 = new Parse.Query(Item);
+		var query2 = new Parse.Query(Item);
 		
-		return query.find().then(function(items) {
-			console.log(items[0].get("userEmail"));
-			console.log(items[0].get("description"));
-			
-			return items[0];
-			
-			/*{
-				title : items[0].get("title"),
-				description : items[0].get("description"),
-				category : items[0].get("category"),
-				price : items[0].get("price")
-			};*/
-		});
+		//Title constraint
+		if (titleContains && titleContains.trim().length > 0) {
+			query1.contains("title", titleContains.toLowerCase());
+			query2.contains("title", titleContains.toUpperCase());
+			mainQuery = Parse.Query.or(query1, query2); 
+		}
 		
+		//Category constraint
+		if (itemCat && itemCat.trim().length > 0)
+			mainQuery.equalTo("category", itemCat); 
 		
-		//query.equalTo("objectId", itemId);
-		
-		/*
-		return query.find().then(function(results) {
-			var item = results[0];
-			console.log(item);
-			
-			if (item)
-			{
-				
-				return {
-					"title"        : item.get("title"),
-					"description"  : item.get("description"),
-					"category"     : item.get("category"),
-					"price"        : item.get("price")
-				
-				};
+		mainQuery.descending("createdAt"); //Newest items at the top
+		mainQuery.find({
+			 success: function(results) {
+				cb(results); //call the callback
+			 },
+			error: function(error){
 			}
-			else
-			{
-				
-				return Parse.Promise.error(error);
-				
-			}
-		}, function(error) {
-			return Parse.Promise.error(error);
-		});    
-		*/
-/*
-		query.find({
-		    success: function(item) {
-				
-				alert("Error: " + error.code + " " + error.message);
-				
-				return {
-					"title"        : item.get("title"),
-					"description"  : item.get("description"),
-					"category"     : item.get("category"),
-					"price"        : item.get("price")
-				
-				};
-			},
-			error: function(error) {
-				alert("Error: " + error.code + " " + error.message);
-		  }
 		});
-		*/
+
 	},
 	
 	
-	updateItem : function(title, description, picture, category, price) {
+	updateItem : function(itemId, title, description, picture, category, price, cb) {
 		var errors = []
+		//var item;
 		var vld = new Validator();
+		
 		
 		errors = vld.validateUpdateItem(title, description, picture, category, price);
 		
@@ -416,31 +398,35 @@ Driver.prototype = {
 			return errors;
 		
 		
-		var Item = Parse.Object.extend("Item");
-		var item = new Item();
-		
-		
-		//Get current user
-		var user = new Parse.User.current();
-		
-		//Add validation
-		if (title.length > 0)
-			item.set("title", title);
-		if (description.length > 0)
-			item.set("description", description);
-		//if (picture)
-			//item.set("picture", picture);
-		if (category.length > 0)
-			item.set("category", category);
-		if (price.length > 0)
-			item.set("price", parseInt(price, 10));
-		
-		
-		return [];	
-	}
-	
-	
-	
+		//Get object and update it
+		//var Item = Parse.Object.extend("Item");
+		var query = new Parse.Query("Item");
+		query.equalTo("objectId", itemId);
+		query.first({
+			success: function(Item) {
+				Item.save({
+					success: function (item) {
+						console.log("inside item save success");
+						if (title && title.trim().length > 0)
+							item.set("title", title);
+						if (description && description.trim().length > 0)
+							item.set("description", description);
+						//if (picture && picture.trim().length > 0)
+							//item.set("picture", picture);
+						if (category && category.trim().length > 0)
+							item.set("category", category);
+						if (price && price.trim().length > 0)
+							item.set("price", parseInt(price, 10));
+						 
+					}
+				});
+										 
+				cb(); //call the callback
+			},
+			error: function(error){
+			}
+		});	
+	}	
 };
 
 
