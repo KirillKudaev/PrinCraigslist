@@ -30,7 +30,8 @@
          </div>
          <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Create a Listing</a></li>
+            <li id="headCreate" style="display:none";><a data-toggle="modal" data-target="#CreateListing">Create a Listing</a></li>
+            <li></li>
          </ul>
          <ul class="nav navbar-nav navbar-right" id="headUserNotSignedIn">
             <li><a data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -38,7 +39,7 @@
          </ul>
          <ul class="nav navbar-nav navbar-right" id="headUserSignedIn" style="display:none";>
             <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> Account</a></li>
-            <li><a onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <li><a onclick="logoutUser()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
          </ul>
       </div>
    </nav>
@@ -110,6 +111,42 @@
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-default" onclick="signupUser()">Sign up</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-- CreateListing Modal -->
+   <div id="CreateListing" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Create Listing</h4>
+            </div>
+            <div class="modal-body">
+               <div class="form-group row">
+                  <label for="createTitle" class="col-sm-3 col-form-label">Title</label>
+                  <div class="col-sm-9">
+                     <input type="text" id="createTitle" placeholder="Title">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createDescription" class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                     <input type="text" id="createDescription" placeholder="Description">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="createPrice" class="col-sm-3 col-form-label">Price</label>
+                  <div class="col-sm-9">
+                     <input type="text" id="createPrice" placeholder="Price">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="createItem()">List Item</button>
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
          </div>
@@ -216,7 +253,7 @@
          </div>
          <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Create a Listing</a></li>
+            <li id="footCreate" style="display:none";><a href="#">Create a Listing</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right" id="footUserNotSignedIn">
             <li><a data-toggle="modal" data-target="#Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

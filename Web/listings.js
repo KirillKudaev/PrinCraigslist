@@ -25,17 +25,17 @@ function populateItems() {
    var currItem;
    
    
-   
-   for (currItem = (currPage - 1) * 10; currItemPos < 10; currItem++) {
+   for (currItem = (currPage - 1) * 10; currItemPos < 10 && currItem < items.length; currItem++) {
       currItemPos++;
       
       currItemTitle = items[currItem].get("title") + " <span class=\"glyphicon glyphicon-usd\"></span>" + items[currItem].get("price") + " Seller: " + items[currItem].get("userEmail");
       currItemBody = items[currItem].get("description");
       
+      
       $("#listing"+currItemPos+"title").html(currItemTitle);
       $("#listing"+currItemPos+"body").html(currItemBody);
       $("#listing"+currItemPos).toggle(); // make it visible
-      if (items[currItem].get("id") == user.id) {
+      if (user != null && items[currItem].get("userEmail") == user.email) {
          $("#listing"+currItemPos+"footer").toggle();
       }
    }
@@ -60,23 +60,21 @@ function storeItems(results) {
    if (currPage == null) {
       currPage = 1; // no argument, default to page 1
    }
-   console.log("title: " + item[0].get("title"));
-   console.log("desc: " + item[0].get("description"));
-   console.log("price: " + item[0].get("price"));
-   console.log("id: " + item[0].get("objectId"));
-   console.log("userId: " + item[0].get("userId"));
-   console.log("userEmail: " + item[0].get("userEmail"));
+   
+   populatePagination();
+   populateItems();
 }
 
 function populateListings() {
    user = getUser();
    if (user != null) {
-      $("headUserNotSignedIn").toggle();
-      $("headUserSignedIn").toggle();
-      $("footUserNotSignedIn").toggle();
-      $("footUserSignedIn").toggle();
+      $("#headUserNotSignedIn").toggle();
+      $("#headUserSignedIn").toggle();
+      $("#footUserNotSignedIn").toggle();
+      $("#footUserSignedIn").toggle();
+      $("#headCreate").toggle();
+      $("#footCreate").toggle();
    }
-   getItems(storeItems);
-   populatePagination();
-   populateItems();
+   
+   getItems();
 }

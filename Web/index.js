@@ -39,10 +39,6 @@ function getUser() {
 
 	//Need to wait for 
 	var user = driver.getUser();
-   
-   if (user.firstName == null) {
-      user = null;
-   }
 	
 	return user;
 }
@@ -96,7 +92,7 @@ function createItem() {
 	var driver = new Driver();
 	
 	var errors = driver.createItem($("#createTitle").val(), $("#createDescription").val(),
-	 null, $("#createCategory").val(), $("#createPrice").val());
+	 null, /*$("#createCategory").val(),*/ $("#createPrice").val());
 
 	if (errors.length > 0) {
 		console.log(errors);
@@ -114,9 +110,8 @@ function getItems(storeItems) {
 	var item;
 	var driver = new Driver();
 	
-	
 	//call the function
-	driver.getItem("", "", "", storeItems);
+	return driver.getItems();
 }
 
 function getItem() {
@@ -238,13 +233,18 @@ Driver.prototype = {
 	getUser : function() {
 		//Get current user
 		var user = new Parse.User.current();
-		
-		return {
-			"firstName" : user.get("firstName"),
-			"lastName"  : user.get("lastName"),
-			"email"     : user.get("email"),
-         "id"        : user.get("id")
-		};	
+      
+      if (user.id != null) {
+         return {
+            "firstName" : user.get("firstName"),
+            "lastName"  : user.get("lastName"),
+            "email"     : user.get("email"),
+            "id"        : user.id
+         };	
+      }
+      else {
+         return null;
+      }
 	},
 	
 	/*
@@ -307,7 +307,7 @@ Driver.prototype = {
 	logoutUser : function() {
 		
 		Parse.User.logOut();
-		
+		window.location = "index.html";
 	},
 	
 	loginUser : function(email, password) {
@@ -327,15 +327,15 @@ Driver.prototype = {
 		
 	},
 	
-	createItem : function(title, description, picture, category, price) {
+	createItem : function(title, description, picture, /*category,*/ price) {
 		
 		console.log("title: " + title);
 		console.log("description: " + description);
-		console.log("category: " + category);
+		//console.log("category: " + category);
 		console.log("price: " + price);
 		
 		var vld = new Validator();
-		var errors = vld.validateCreateItem(title, description, picture, category, price);
+		var errors = vld.validateCreateItem(title, description, picture, /*category,*/ price);
 		
 		if (errors.length > 0)
 			return errors;
@@ -351,7 +351,7 @@ Driver.prototype = {
 		item.set("title", title);
 		item.set("description", description);
 		//item.set("picture", picture);
-		item.set("category", category);
+		//item.set("category", category);
 		item.set("price", parseInt(price, 10));
 		item.set("userId", user.id);
 		item.set("userEmail", user.get("email"));
@@ -394,8 +394,23 @@ Driver.prototype = {
 		
 		mainQuery.descending("createdAt"); //Newest items at the top
 		mainQuery.find({
-			 success: function(results) {
+			success: function(results) {
+            console.log(results);
 				cb(results); //call the callback
+			 },
+			error: function(error){
+			}
+		});
+
+	},
+   
+   getItems : function () {
+		var Item = Parse.Object.extend("Item");
+		var mainQuery = new Parse.Query(Item);
+		mainQuery.descending("createdAt"); //Newest items at the top
+		mainQuery.find({
+			success: function(results) {
+            storeItems(results);
 			 },
 			error: function(error){
 			}
