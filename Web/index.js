@@ -39,16 +39,12 @@ function getUser() {
 
 	//Need to wait for 
 	var user = driver.getUser();
+   
+   if (user.firstName == null) {
+      user = null;
+   }
 	
-	
-	console.log("email: " + user.email);
-	console.log("first: " + user.firstName);
-	console.log("last: " + user.lastName);
-		
-	
-	
-	
-		
+	return user;
 }
 
 function updateUser() {
@@ -89,15 +85,13 @@ function logoutUser() {
 
 
 function loginUser() {
-	event.preventDefault();
 	
 	var driver = new Driver();
-	
+   
 	driver.loginUser($("#loginEmail").val(), $("#loginPassword").val());
 }
 
 function createItem() {
-	event.preventDefault();
 	
 	var driver = new Driver();
 	
@@ -116,9 +110,16 @@ function createItem() {
 	
 }
 
+function getItems(storeItems) {
+	var item;
+	var driver = new Driver();
+	
+	
+	//call the function
+	driver.getItem("", "", "", storeItems);
+}
 
 function getItem() {
-	event.preventDefault();
 	var item;
 	var driver = new Driver();
 	
@@ -140,7 +141,6 @@ function getItem() {
 }
 
 function updateItem() {
-	event.preventDefault();
 
 	var driver = new Driver();
 
@@ -162,7 +162,6 @@ function updateItem() {
 
 
 function deleteItem() {
-	event.preventDefault();
 
 	var driver = new Driver();
 	console.log($("#deleteItemId").val());
@@ -217,7 +216,8 @@ Driver.prototype = {
 		//create the account - send in to parse server
 		user.signUp(null, {
 		  success: function(user) {
-			alert("signup successful!");
+			alert("Signup successful! Please log in");
+         window.location = "index.html";
 		  },
 		  error: function(user, error) {
 			if (error.code == 202)
@@ -242,7 +242,8 @@ Driver.prototype = {
 		return {
 			"firstName" : user.get("firstName"),
 			"lastName"  : user.get("lastName"),
-			"email"     : user.get("email")
+			"email"     : user.get("email"),
+         "id"        : user.get("id")
 		};	
 	},
 	
@@ -317,9 +318,10 @@ Driver.prototype = {
 
 		Parse.User.logIn(email, pass, {
 			success: function(user) {
-				
+				window.location = "index.html";
 			},
 			error: function(user, error) {
+            alert("Error: " + error.code + " " + error.message);
 			}
 		});
 		

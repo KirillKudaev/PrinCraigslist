@@ -1,45 +1,93 @@
-Examples:
+1) Home Page
+   - User clicks "Principia's Crägslist" or "Home"
+      - Page reloads.  Go to 1.
+   - User clicks "Sign Up"
+2)    - Form pops up
+         - User clicks "Close" or clicks outside the form
+            - Form closes.  Go to 1.
+         - User enters an an email, first name, last name, and password in their respective boxes and presses "Sign up"
+            - If good data: alert appears saying "Signup successful! Please log in"
+               - User clicks "Ok", page reloads to Home Page.  Go to 1.
+            - If no last name: alert appears saying "Error - Missing Field : User must have last name"
+            - If no email: alert appears saying "Error - Missing Field : User must have email"
+            - If no password: alert appears saying "Error - Missing Field : User must have a password"
+            - If no first name: alert appears saying "Error - Missing Field : User must have first name"
+            - If passowrd too short: alert appears saying "Error - Bad Value : Password must be at least 8 characters."
+            - If email isn't valid: alert appears saying "Error: Bad Value : Email address format is invalid."
+            - If email is already used: alert appears saying "This email is already in use, please use a different one"
+               - All of the above: user clicks "Ok" to return to their existing signup form.  Go to 2.
+   - User clicks "Login"
+3)    - Form pops up
+         - User clicks "Close" or clicks outside the form
+            - Form closes.  Go to 1.
+         - User enters an email in the email box and a password in the password box and presses "Login"
+            - If good data
+               - Taken to Signed in Home Page.  Go to 4.
+            - If no email: alert appears saying "Error: Please enter an email address"
+            - If no password: alert appears saying "Error: Please enter a password"
+            - If non-existant email: alert appears saying "Error: no such email on record"
+            - If bad password: alert apperars saying "Error: incorrect password"
+               - All of the above: user clicks "Ok" to return to their existing login form.  Go to 3.
 
-Home Page
-1) User clicks (log in button)
-2) Form pops up 
-3) User enters an email in the email box and a password in the password box
-	- if good data: taken to user home page
-	- if bad email: alert appears that says _______
-	- if bad password: alert apperars that says _______
-	_ if both bad email/password: alert appears that says _______
-	
-User Home Page
-1)Use clicks "Create a Listing" button
-2) Form pops up 
-3) User has option to enter info for: title, description, category, price
-	- if good data: alert appears that says ______
-	- if title entered that has more than 80 characters, alert generated that says___
-	- if category not selected from drop down, alert generated that says ______
-	- if price entered: alert appears that says ______
+4) Signed in Home Page
+   - User clicks  "Principia's Crägslist" or "Home"
+      - Page reloads.  Go to 4.
+   - User clicks "Logout"
+      - Taken to Home Page.  Go to 1.
+   - User clicks "Account"
+      - Taken to Account Page.  Go to 6.
+   - user clicks "Update Listing"
+      - Taken to Update Listing Page.  Go to 7.
+   - User clicks "Create a Listing" button
+5)    - Form pops up
+         - User enters a title, description, and price
+            - If good data: alert appears saying "Item posted!"
+               - User clicks "Ok", page reloads to Signed in Home Page.  Go to 4.
+            - If no title: alert appears saying "Error - Missing Field : Item must have a title"
+            - If no description: alert appears saying "Error - Missing Field : Item must have a description."
+            - If no price: alert appears saying "Error - Missing Field : Item must have a price"
+            - If title entered that has more than 80 characters, alert appears saying "Error - Bad Value : Title must be less than 80 characters."
+            - If price isn't valid: alert appears saying "Error - Bad Value : Price must be a number."
+               - All of the above: user clicks "Ok" to return to their existing listing form.  Go to 5.
 
-	
-	
-Things to write tests on: (includes errors with bad data etc)
-Home page
--login
--signup
-
-User home page
--Create a listing
--logout
--home
--account
-
-
-Priorities:
-- Basic functionality
-	- Get listings
-	- login/logout/signup
-	- Create listings
-
-- Update item
-- delete item
-- delete user
-- update user
-
+6) Account Page
+   - User clicks  "Principia's Crägslist" or "Home"
+      - Taken to Signed in Home Page.  Go to 4.
+   - User clicks "Logout"
+      - Taken to Home Page.  Go to 1.
+   - User clicks "Account"
+      - Page reloads.  Go to 6.
+   - User changes existing first name, last name, email, and/or password and enters existing password then presses "Save Changes"
+      - If good data: alert appears saying "Changes saved!"
+         - User clicks "Ok", page reloads to Account Page.  Go to 6.
+      - If any field cleared to blank: alert appears saying "Error: Missing Field : " + appropriate field warning as shown in signup form
+      - If new email or password isn't valid: alert appears saying "Error: Bad Value : " + appropriate field warning as shown in signup form
+      - If existing password is wrong: alert appears saying "Error: incorrect password"
+         - All of the above: user clicks "Ok" to return to the existing Account Page.  Go to 6.
+   - User enters existing password and clicks "Delete Account"
+      - If good data: form pops up confirming delete
+         - If user clicks "Yes", alert appears saying "Account deleted!"
+            - User clicks "Ok", taken to Home Page.  Go to 1.
+         - If user clicks "No"
+            - Page reloads.  Go to 6.
+      - If existing password is wrong: alert appears saying "Error: incorrect password"
+         - All of the above: user clicks "Ok" to return to the existing Account Page.  Go to 6.
+         
+7) Update Listing Page
+   - User clicks  "Principia's Crägslist" or "Home"
+      - Taken to Signed in Home Page.  Go to 4.
+   - User clicks "Logout"
+      - Taken to Home Page.  Go to 1.
+   - User clicks "Account"
+      - Page reloads.  Go to 6.
+   - User changes existing title, description, and/or price then presses "Save Changes"
+      - If good data: alert appears saying "Changes saved!"
+         - User clicks "Ok", taken to Signed in Home Page.  Got to 4.
+      - If bad data: appropriate error alerts to create listing.
+         - User clicks "Ok" to return to the existing Update Listing Page.  Go to 7.
+   - User clicks "Delete Item", form pops up confirming delete
+      - If user clicks "Yes", alert appears saying "Item deleted!"
+         - User clicks "Ok", taken to Signed in Home Page.  Go to 4.
+      - If user clicks "No"
+         - Form closes and user is returned to existing Update Listing Page.  Go to 7.
+         
