@@ -11,8 +11,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logout(_ sender: AnyObject) {
         
-        PFUser.logOut()
-        
+        PFUser.logOut()  
         performSegue(withIdentifier: "logoutSegue", sender: self)
     }
     

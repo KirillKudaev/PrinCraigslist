@@ -22,7 +22,6 @@
 		564285911EA97D7D0068CB82 /* PrinCraigslistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564285901EA97D7D0068CB82 /* PrinCraigslistUITests.swift */; };
 		56A034D31E21A63B009A9710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A034D21E21A63B009A9710 /* LoginViewController.swift */; };
 		56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */; };
-		56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB50861E9E8D04006E4CEA /* ViewController.swift */; };
 		814C3ACA1B69877600E307BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC61B69877600E307BB /* Main.storyboard */; };
 		814C3ACB1B69877600E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC81B69877600E307BB /* Images.xcassets */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
@@ -71,7 +70,6 @@
 		56BB507A1E9E8967006E4CEA /* PrinCraigslistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinCraigslistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BB507C1E9E8967006E4CEA /* PrinCraigslistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinCraigslistTests.swift; sourceTree = "<group>"; };
 		56BB507E1E9E8967006E4CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56BB50861E9E8D04006E4CEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../PrinCraigslistTests/ViewController.swift; sourceTree = "<group>"; };
 		814C3AC71B69877600E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		814C3AC81B69877600E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814C3AC91B69877600E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				5642856F1EA5CACC0068CB82 /* ProfileViewController.swift */,
 				56A034D21E21A63B009A9710 /* LoginViewController.swift */,
-				56BB50861E9E8D04006E4CEA /* ViewController.swift */,
 				5642857A1EA83FF20068CB82 /* PostItemViewController.swift */,
 				564285801EA85C800068CB82 /* ItemCell.swift */,
 				5642857C1EA85AE90068CB82 /* HomeTableViewController.swift */,
@@ -365,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				564285791EA833B20068CB82 /* LoginInfoTests.swift in Sources */,
-				56BB50871E9E8D04006E4CEA /* ViewController.swift in Sources */,
 				56BB507D1E9E8967006E4CEA /* PrinCraigslistTests.swift in Sources */,
 				564285771EA8335E0068CB82 /* SignupInfoTests.swift in Sources */,
 				564285871EA869C20068CB82 /* PostItemInfoTests.swift in Sources */,
@@ -629,6 +625,7 @@
 				564285971EA97D7D0068CB82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56BB50831E9E8967006E4CEA /* Build configuration list for PBXNativeTarget "PrinCraigslistTests" */ = {
 			isa = XCConfigurationList;
