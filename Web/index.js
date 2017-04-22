@@ -15,7 +15,7 @@ function signupUser() {
    console.log($("#createEmail").val());
    console.log($("#createUserPass").val());
 	//Need to wait for 
-	var errors = driver.signUpUser($("#createFirstName").val().trim(), $("#createLastName").val(),
+	var errors = driver.signUpUser($("#createFirstName").val(), $("#createLastName").val(),
 	 $("#createEmail").val(), $("#createUserPass").val());
 		
 	console.log("before validation");
@@ -86,6 +86,93 @@ function logoutUser() {
 	
 	driver.logoutUser();
 }
+
+
+function loginUser() {
+	event.preventDefault();
+	
+	var driver = new Driver();
+	
+	driver.loginUser($("#loginEmail").val(), $("#loginPassword").val());
+}
+
+function createItem() {
+	event.preventDefault();
+	
+	var driver = new Driver();
+	
+	var errors = driver.createItem($("#createTitle").val(), $("#createDescription").val(),
+	 null, $("#createCategory").val(), $("#createPrice").val());
+
+	if (errors.length > 0) {
+		console.log(errors);
+		errors.forEach(function(err) {
+			console.log("error");
+			alert("Error - " + err.tag + " : " + err.desc);
+		});
+	}
+	else 
+		console.log("no errors");	
+	
+}
+
+
+function getItem() {
+	event.preventDefault();
+	var item;
+	var driver = new Driver();
+	
+	var itemCat = "Book"; //$("#searchItemCategory").val();
+	var titleContains = "B"; // $("#searchItemTitle").val();
+	var itemId = ""; // $("#searchItemId").val();
+	
+	
+	//call the function
+	driver.getItem(itemCat, titleContains, itemId, function(item) {
+		console.log("title: " + item[0].get("title"));
+		console.log("desc: " + item[0].get("description"));
+		console.log("category: " + item[0].get("category"));
+		console.log("price: " + item[0].get("price"));
+		console.log("id: " + item[0].get("objectId"));
+		console.log("userId: " + item[0].get("userId"));
+		console.log("userEmail: " + item[0].get("userEmail"));
+	});
+}
+
+function updateItem() {
+	event.preventDefault();
+
+	var driver = new Driver();
+
+	var errors = driver.updateItem("UfZKQDYQsh"/*$("#itemId").val()*/, $("#updateTitle").val(), $("#updateDescription").val(),
+		null, $("#updateCategory").val(), $("#updatePrice").val());
+
+	
+	if (errors.length > 0) {
+		console.log(errors);
+		errors.forEach(function(err) {
+			console.log("error");
+			alert("Error - " + err.tag + " : " + err.desc);
+		});
+	}
+	else 
+		console.log("no errors");
+	
+}
+
+
+function deleteItem() {
+	event.preventDefault();
+
+	var driver = new Driver();
+	console.log($("#deleteItemId").val());
+	driver.deleteItem($("#deleteItemId").val());
+	
+	
+	
+}
+
+
 //################################################################################################
 
 
@@ -151,10 +238,6 @@ Driver.prototype = {
 	getUser : function() {
 		//Get current user
 		var user = new Parse.User.current();
-		//var user = new User (userTemp.get("firstName"), 
-		//userTemp.get("lastName"), userTemp.get("email"));
-		
-		
 		
 		return {
 			"firstName" : user.get("firstName"),
@@ -224,10 +307,181 @@ Driver.prototype = {
 		
 		Parse.User.logOut();
 		
-		
-		
-	}
+	},
 	
+	loginUser : function(email, password) {
+		var email = email;
+		var pass = password;
+
+		
+
+		Parse.User.logIn(email, pass, {
+			success: function(user) {
+				
+			},
+			error: function(user, error) {
+			}
+		});
+		
+	},
+	
+	createItem : function(title, description, picture, category, price) {
+		
+		console.log("title: " + title);
+		console.log("description: " + description);
+		console.log("category: " + category);
+		console.log("price: " + price);
+		
+		var vld = new Validator();
+		var errors = vld.validateCreateItem(title, description, picture, category, price);
+		
+		if (errors.length > 0)
+			return errors;
+		
+		var Item = Parse.Object.extend("Item");
+		var item = new Item();
+		
+		
+		//var item = Parse.Item();
+		var user = Parse.User.current();
+		
+		//set values for item - postedDate
+		item.set("title", title);
+		item.set("description", description);
+		//item.set("picture", picture);
+		item.set("category", category);
+		item.set("price", parseInt(price, 10));
+		item.set("userId", user.id);
+		item.set("userEmail", user.get("email"));
+		
+		
+		item.save(null, {
+			success: function(item) {
+			
+				alert('New object created with objectId: ' + item.id);
+			},
+			error: function(item, error) {
+			
+				alert('Failed to create new object, with error code: ' + error.message);
+			}
+		});
+		
+		return [];
+	}, 
+	
+	getItem : function (itemCat, titleContains, itemId, cb) {
+		var Item = Parse.Object.extend("Item");
+		var mainQuery = new Parse.Query(Item);
+		var query1 = new Parse.Query(Item);
+		var query2 = new Parse.Query(Item);
+		
+		//Title constraint
+		if (titleContains && titleContains.trim().length > 0) {
+			query1.contains("title", titleContains.toLowerCase());
+			query2.contains("title", titleContains.toUpperCase());
+			mainQuery = Parse.Query.or(query1, query2); 
+		}
+		
+		//Category constraint
+		if (itemCat && itemCat.trim().length > 0)
+			mainQuery.equalTo("category", itemCat); 
+		
+		//Category constraint
+		if (itemId && itemId.trim().length > 0)
+			mainQuery.equalTo("objectId", itemId);
+		
+		mainQuery.descending("createdAt"); //Newest items at the top
+		mainQuery.find({
+			 success: function(results) {
+				cb(results); //call the callback
+			 },
+			error: function(error){
+			}
+		});
+
+	},
+	
+	
+	updateItem : function(itemId, title, description, picture, category, price, cb) {
+		var errors = []
+		var vld = new Validator();
+		
+		
+		errors = vld.validateUpdateItem(title, description, picture, category, price);
+		
+		if (errors.length > 0)
+			return errors;
+		
+		this.queryAndUpdateItem(itemId, title, description, picture, category, price, 
+		 function (item, title, description, picture, category, price) {
+			console.log("should get herrer!!!!!!");
+			console.log(item);
+			if (title && title.trim().length > 0) {
+				console.log("changing title");
+				item.set("title", title);
+			}
+			if (description && description.trim().length > 0)
+				item.set("description", description);
+			//if (picture && picture.trim().length > 0)
+				//item.set("picture", picture);
+			if (category && category.trim().length > 0)
+				item.set("category", category);
+			if (price && price.trim().length > 0)
+				item.set("price", parseInt(price, 10));
+			
+			item.save();
+			
+		});
+		
+		
+						
+		
+		return [];
+	},
+	
+	deleteItem : function(itemId) {
+		var query = new Parse.Query("Item");
+		query.equalTo("objectId", itemId);
+		query.find({
+			success: function(items) {
+				console.log("itemId to delete: " + itemId);
+				console.log(items[0]);
+				items[0].destroy({
+					success: function(){
+						console.log("success!!!");
+					},
+					error : function(error) {
+						console.log("error!!!");
+					}
+				});
+			},
+			error: function(error){
+				
+			}
+		});
+		
+	},
+
+//############################################
+//Private
+
+	queryAndUpdateItem : 
+	 function (itemId, title, description, picture, category, price, cb) {
+		//Get object and update it
+		//var Item = Parse.Object.extend("Item");
+		var query = new Parse.Query("Item");
+		query.equalTo("objectId", itemId);
+		query.find({
+			
+			success: function(items) {
+				console.log("title in find " + itemId);
+				console.log("title in find " + title);
+				cb(items[0], title, description, picture, category, price);
+			},
+			error: function(error){
+			}
+		});	
+	}
 	
 	
 };
@@ -243,12 +497,8 @@ function Validator() {
 	this.passwordMax = 35;
 	this.passwordMin = 8;
 	
-	//field/value constraints
-	this.validPicFormats = ["jpg"]; //Currently only accepting jpeg
+	//category constraints
 	this.validCategories = ["Books", "Bikes", "Electronics", "Clothing", "Jobs", "Other"];
-	//this.requiredItemFields = ["userId", "title", "categoryId", "price", "postedDate"];
-	//this.requiredUserFields = ["lastName", "email", "password"];
-	//this.errors;
 	
 	this.tags = {
 		missingField: "Missing Field",         // Field missing from request. 
@@ -272,7 +522,14 @@ function Validator() {
 		descriptionMax : "Description must be less than " + this.descriptionMax + " characters.",
 		vldCategory    : "Valid categories are: Books, Bikes, Electronics, Clothing, Jobs, or Other",
 		vldPicFormat   : "Valid picture format is only .jpg at this time",
-		oldPassFail    : "Password validation failed."
+		oldPassFail    : "Password validation failed.",
+		vldPrice       : "Price must be a number greater than or equal to 0",
+		missingTitle   : "Item must have title",
+		missingCategory: "Item must have a category",
+		missingPrice   : "Item must have a price, enter 0 if free",
+		missingEmail   : "User must have email",
+		missingLastName: "User must have last name",
+		missingPassword: "User must have a password"
 	};
 }
 
@@ -287,7 +544,7 @@ Validator.prototype = {
 
 		errors = errors.concat(this.validateUserFieldLengths(firstName, lastName, email, password));
 		
-		errors = errors.concat(this.validateUserRequiredFields(lastName, email));
+		errors = errors.concat(this.validateUserRequiredFields(lastName, email, password));
 		
 		return errors;
 	},
@@ -297,8 +554,6 @@ Validator.prototype = {
 		var errors = [];
 		
 		errors = errors.concat(this.validateUserFieldLengths(firstName, lastName, email, password));
-		
-		//errors = errors.concat(this.validateUserRequiredFields(lastName, email));
 		
 		//errors = errors.concat(this.validateUserOldPassword(oldPassword));
 		
@@ -310,11 +565,13 @@ Validator.prototype = {
 		
 		errors = errors.concat(this.validateItemFieldLengths(title, description));
 		
-		errors = errors.concat(this.validateItemPicture(picture));
+		//errors = errors.concat(this.validateItemPicture(picture));
 		
-		errors = errors.concat(this.validateItemCategories(picture));
+		errors = errors.concat(this.validateItemCategories(category));
 		
 		errors = errors.concat(this.validateItemPrice(price));
+		
+		errors = errors.concat(this.validateItemRequiredFields(title, category, price));
 		
 		
 		return errors;
@@ -324,6 +581,14 @@ Validator.prototype = {
 	
 	validateUpdateItem : function(title, description, picture, category, price) {
 		var errors = [];
+		
+		errors = errors.concat(this.validateItemFieldLengths(title, description));
+		
+		//errors = errors.concat(this.validateItemPicture(picture));
+		
+		errors = errors.concat(this.validateItemCategories(category));
+		
+		errors = errors.concat(this.validateItemPrice(price));
 		
 		return errors;
 	},
@@ -380,29 +645,34 @@ Validator.prototype = {
 		return errors;
 	},
 	
-	validateUserRequiredFields : function(lastName, email) {
+	validateUserRequiredFields : function(lastName, email, password) {
 		
 		var errors = [];
 		
-		/*
-		if (lastName && lastName.length > 0 && lastName.trim().length < 1 || email.trim().length < 1)
+		if (!lastName || (lastName && lastName.trim().length <= 0)) {
+	
 			errors.push({
-				"tag" : this.tags.badValue, 
-				"desc" : "Last name and email must have at least 1 non-whitespace character."
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingLastName
 			});
 		
-		
-		if (email && email.length > 0 && email.indexOf('@') > -1)
+		}
+		if (!email || (email && email.trim().length <= 0))
 			errors.push({
-				"tag" : this.tags.badValue, 
-				"desc" : email + " is not a valid email."
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingEmail
 			});
 			
-		*/	
+		if (!password || (password && password.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingPassword
+			});
 		
 		return errors;
 	},
 	
+	/*
 	validateUserOldPassword : function (oldPassword) {
 		var errors = [];
 		var user = Parse.User.current();
@@ -427,11 +697,24 @@ Validator.prototype = {
 		});
 		
 	},
-	
+	*/
 	
 	validateItemFieldLengths : function (title, description) {
 		var errors = [];
 		
+		if(title && title.trim().length > 0 && title.length > this.titleMax) {
+			
+			errors.push({
+				"tag" : this.tags.badValue, 
+				"desc" : this.desc.titleMax 
+			});
+			
+		}
+		if(description && description.trim().length > 0 && description.length > this.descriptionMax)
+			errors.push({
+				"tag" : this.tags.badValue, 
+				"desc" : this.desc.descriptionMax 
+			});
 		
 		return errors;
 	},
@@ -439,16 +722,34 @@ Validator.prototype = {
 	validateItemPicture : function (picture) {
 		var errors = [];
 		
+		//currently no implementation
 		
 		return errors;
 	},
 	
 	
 		
-	validateItemCategories : function (picture) {
+	validateItemCategories : function (category) {
 		var errors = [];
+		var catFound = false;
+		
+		if (category && category.trim().length > 0) {
+			this.validCategories.forEach(function(cat){
+				if(cat === category) {
+					catFound = true;
+				}
+					
+			});
+			
+			if (!catFound) 
+			errors.push({
+				"tag" : this.tags.badCategory, 
+				"desc" : this.desc.vldCategory
+			});
+		}
 		
 		
+			
 		return errors;
 	},
 	
@@ -457,13 +758,39 @@ Validator.prototype = {
 	validateItemPrice : function(price) {
 		var errors = [];
 		
+		if (price && price.trim().length > 0 ) {
+			if (!parseInt(price, 10) || parseInt(price, 10) < 0)
+				errors.push({
+					"tag" : this.tags.badValue, 
+					"desc" : this.desc.vldPrice
+				});
+		}
+			
+		
 		
 		return errors;
 	},
 	
-	validateItemRequiredFields : function(price) {
+	validateItemRequiredFields : function(title, category, price) {
 		var errors = [];
 		
+		if (!title || (title && title.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingTitle
+			});
+				
+		if (!category || (category && category.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingCategory
+			});
+				
+		if (!price || (price && price.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingPrice
+			});
 		
 		return errors;
 	}

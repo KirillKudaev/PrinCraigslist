@@ -138,8 +138,42 @@ describe("Validator Tests", function() {
 			});
 			
 			
-			///Tests for non-existant required fields
+			it("Missing Non-Required Fields", function (done) {
+				errors = vld.validateCreateUser("", "Last", "email", "12345678");
+				
+				expect(errors.length).to.equal(0);
+
+				done();
+
+			});
+			
+			it("Missing required fields", function (done) {
+				
+				errors = vld.validateCreateUser("", "", "email", "12345678");
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingLastName);
+				
+				
+				errors = vld.validateCreateUser("", "last", "", "12345678");
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingEmail);
+				
+				
+				errors = vld.validateCreateUser("", "last", "email", "");
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingPassword);
+
+				done();
+
+			});
 		});
+		
 		
 		describe("validateUpdateUser", function() {
 			var updatedFirstName = "Testy2";
@@ -156,7 +190,7 @@ describe("Validator Tests", function() {
 				errors = vld.validateUpdateUser(updatedFirstName);
 				
 				expect(errors.length).to.equal(0);
-				
+
 				done();
 			 
 			});
@@ -223,12 +257,11 @@ describe("Validator Tests", function() {
 		var title = "Comp Sci Book";
 		var description = "This is a book for a csci class";
 		var picture;
-		var category = "Book";
-		var price = 50;
+		var category = "Books";
+		var price = "50"; // Input from html is string format
 		var errors = [];
 		
 		describe("validateCreateItem", function() {
-			//Each user entered value
 			
 			it("Good Data", function (done) {
 				errors = vld.validateCreateItem(title, description, picture, category, price);
@@ -283,28 +316,78 @@ describe("Validator Tests", function() {
 			 
 			});
 			
-			it("Bad Picture Format", function (done) {
-				expect(2).to.equal(1);
-				
-				done();
-			 
-			});
 			
 			it("Invalid Price", function (done) {
-				expect(2).to.equal(1);
+				var notANum = "cow";
+				
+				
+				errors = vld.validateCreateItem(title, description, picture, category, notANum);
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.badValue);
+				expect(errors[0].desc).to.equal(vld.desc.vldPrice);
+				
+				
+				var badPrice = "-1";
+				
+				errors = vld.validateCreateItem(title, description, picture, category, badPrice);
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.badValue);
+				expect(errors[0].desc).to.equal(vld.desc.vldPrice);
+				
+				done();
+			 
+			});
+			
+			it("Missing Fields - Required fields present", function (done) {
+				var notANum = "cow";
+				
+				
+				errors = vld.validateCreateItem(title, "", picture, category, price);
+				
+				expect(errors.length).to.equal(0);
 				
 				done();
 			 
 			});
 			
 			
+			it("Missing Required Fields", function (done) {
+				var notANum = "cow";
+				
+				
+				errors = vld.validateCreateItem("", "", picture, category, price);
+
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingTitle);
+				
+				
+				errors = vld.validateCreateItem(title, "", picture, "", price);
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingCategory);
+				
+				
+				errors = vld.validateCreateItem(title, "", picture, category, "");
+				
+				expect(errors.length).to.equal(1);
+				expect(errors[0].tag).to.equal(vld.tags.missingField);
+				expect(errors[0].desc).to.equal(vld.desc.missingPrice);
+				
+				done();
+			 
+			});
 		});
 		
 		describe("validateUpdateItem", function() {
+			
 			it("Bad Value", function (done) {
 				var longTitle = "123456789012345678901234567890123456789012345678901234567890123456789012345678901" //81 chars
 				
-				errors = vld.validateUpdateItem(title);
+				errors = vld.validateUpdateItem(longTitle);
 				
 				expect(errors.length).to.equal(1);
 				expect(errors[0].tag).to.equal(vld.tags.badValue);
@@ -320,7 +403,7 @@ describe("Validator Tests", function() {
 				
 				//All the expected errors
 				var expectedErrorDescs = [vld.desc.titleMax, vld.desc.vldCategory];
-				var expectedErrorTags = [vld.tags.badCategory, vld.badValue];
+				var expectedErrorTags = [vld.tags.badCategory, vld.tags.badValue];
 				
 				errors = vld.validateUpdateItem(longTitle, null, null, badCat);
 				
@@ -342,6 +425,8 @@ describe("Validator Tests", function() {
 						if (err.desc === dsc) 
 							arr.splice(index, 1);	
 					});
+					
+					
 				});
 				
 				expect(expectedErrorDescs.length).to.equal(0);
@@ -387,8 +472,9 @@ describe("Validator Tests", function() {
 				done();
 			 
 			});
-			
 		});
+		
 	});
+	
   
 });
