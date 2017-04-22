@@ -39,7 +39,7 @@ class PrinCraigslistUITests: XCTestCase {
         XCTAssert(app.alerts["Error in form"].exists)
         XCTAssert(app.alerts["Error in form"].buttons["OK"].exists)
         XCTAssert(app.buttons["Log In"].exists)
-        app.alerts["Error in form"].buttons["OK"].press(forDuration: 0.9);
+        app.alerts["Error in form"].buttons["OK"].press(forDuration: 0.5);
     }
     
     func testSignUp() {
@@ -55,6 +55,48 @@ class PrinCraigslistUITests: XCTestCase {
         XCTAssert(app.alerts["Error in form"].buttons["OK"].exists)
         XCTAssert(app.buttons["Log In"].exists)
         
-        app.alerts["Error in form"].buttons["OK"].press(forDuration: 0.7);
+        app.alerts["Error in form"].buttons["OK"].press(forDuration: 0.5);
+    }
+    
+    func testLogInNoUsername() {
+        
+        
+        let app = XCUIApplication()
+        let logInButton = app.buttons["Log In"]
+        logInButton.tap()
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        passwordSecureTextField.press(forDuration: 0.5);
+        passwordSecureTextField.typeText("a")
+        logInButton.press(forDuration: 0.5);
+        
+        XCTAssert(app.textFields["Email"].exists)
+        XCTAssert(app.secureTextFields["Password"].exists)
+        XCTAssert(app.alerts["Error in form"].exists)
+        XCTAssert(app.alerts["Error in form"].buttons["OK"].exists)
+        XCTAssert(app.buttons["Log In"].exists)
+        
+        app.alerts["Error in form"].buttons["OK"].tap()
+        
+    }
+    
+    func testLogInNoPassword() {
+        
+        let app = XCUIApplication()
+        let logInButton = app.buttons["Log In"]
+        logInButton.tap()
+        
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.typeText("a")
+        logInButton.tap()
+        
+        XCTAssert(app.textFields["Email"].exists)
+        XCTAssert(app.secureTextFields["Password"].exists)
+        XCTAssert(app.alerts["Error in form"].exists)
+        XCTAssert(app.alerts["Error in form"].buttons["OK"].exists)
+        XCTAssert(app.buttons["Log In"].exists)
+        
+        app.alerts["Error in form"].buttons["OK"].tap()
     }
 }
