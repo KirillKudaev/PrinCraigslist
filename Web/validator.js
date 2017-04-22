@@ -8,12 +8,8 @@ function Validator() {
 	this.passwordMax = 35;
 	this.passwordMin = 8;
 	
-	//field/value constraints
-	this.validPicFormats = ["jpg"]; //Currently only accepting jpeg
+	//category constraints
 	this.validCategories = ["Books", "Bikes", "Electronics", "Clothing", "Jobs", "Other"];
-	//this.requiredItemFields = ["userId", "title", "categoryId", "price", "postedDate"];
-	//this.requiredUserFields = ["lastName", "email", "password"];
-	//this.errors;
 	
 	this.tags = {
 		missingField: "Missing Field",         // Field missing from request. 
@@ -37,7 +33,14 @@ function Validator() {
 		descriptionMax : "Description must be less than " + this.descriptionMax + " characters.",
 		vldCategory    : "Valid categories are: Books, Bikes, Electronics, Clothing, Jobs, or Other",
 		vldPicFormat   : "Valid picture format is only .jpg at this time",
-		oldPassFail    : "Password validation failed."
+		oldPassFail    : "Password validation failed.",
+		vldPrice       : "Price must be a number greater than or equal to 0",
+		missingTitle   : "Item must have title",
+		missingCategory: "Item must have a category",
+		missingPrice   : "Item must have a price, enter 0 if free",
+		missingEmail   : "User must have email",
+		missingLastName: "User must have last name",
+		missingPassword: "User must have a password"
 	};
 }
 
@@ -52,7 +55,7 @@ Validator.prototype = {
 
 		errors = errors.concat(this.validateUserFieldLengths(firstName, lastName, email, password));
 		
-		errors = errors.concat(this.validateUserRequiredFields(lastName, email));
+		errors = errors.concat(this.validateUserRequiredFields(lastName, email, password));
 		
 		return errors;
 	},
@@ -62,8 +65,6 @@ Validator.prototype = {
 		var errors = [];
 		
 		errors = errors.concat(this.validateUserFieldLengths(firstName, lastName, email, password));
-		
-		//errors = errors.concat(this.validateUserRequiredFields(lastName, email));
 		
 		//errors = errors.concat(this.validateUserOldPassword(oldPassword));
 		
@@ -75,11 +76,13 @@ Validator.prototype = {
 		
 		errors = errors.concat(this.validateItemFieldLengths(title, description));
 		
-		errors = errors.concat(this.validateItemPicture(picture));
+		//errors = errors.concat(this.validateItemPicture(picture));
 		
-		errors = errors.concat(this.validateItemCategories(picture));
+		errors = errors.concat(this.validateItemCategories(category));
 		
 		errors = errors.concat(this.validateItemPrice(price));
+		
+		errors = errors.concat(this.validateItemRequiredFields(title, category, price));
 		
 		
 		return errors;
@@ -89,6 +92,14 @@ Validator.prototype = {
 	
 	validateUpdateItem : function(title, description, picture, category, price) {
 		var errors = [];
+		
+		errors = errors.concat(this.validateItemFieldLengths(title, description));
+		
+		//errors = errors.concat(this.validateItemPicture(picture));
+		
+		errors = errors.concat(this.validateItemCategories(category));
+		
+		errors = errors.concat(this.validateItemPrice(price));
 		
 		return errors;
 	},
@@ -145,29 +156,34 @@ Validator.prototype = {
 		return errors;
 	},
 	
-	validateUserRequiredFields : function(lastName, email) {
+	validateUserRequiredFields : function(lastName, email, password) {
 		
 		var errors = [];
 		
-		/*
-		if (lastName && lastName.length > 0 && lastName.trim().length < 1 || email.trim().length < 1)
+		if (!lastName || (lastName && lastName.trim().length <= 0)) {
+	
 			errors.push({
-				"tag" : this.tags.badValue, 
-				"desc" : "Last name and email must have at least 1 non-whitespace character."
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingLastName
 			});
 		
-		
-		if (email && email.length > 0 && email.indexOf('@') > -1)
+		}
+		if (!email || (email && email.trim().length <= 0))
 			errors.push({
-				"tag" : this.tags.badValue, 
-				"desc" : email + " is not a valid email."
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingEmail
 			});
 			
-		*/	
+		if (!password || (password && password.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingPassword
+			});
 		
 		return errors;
 	},
 	
+	/*
 	validateUserOldPassword : function (oldPassword) {
 		var errors = [];
 		var user = Parse.User.current();
@@ -192,11 +208,24 @@ Validator.prototype = {
 		});
 		
 	},
-	
+	*/
 	
 	validateItemFieldLengths : function (title, description) {
 		var errors = [];
 		
+		if(title && title.trim().length > 0 && title.length > this.titleMax) {
+			
+			errors.push({
+				"tag" : this.tags.badValue, 
+				"desc" : this.desc.titleMax 
+			});
+			
+		}
+		if(description && description.trim().length > 0 && description.length > this.descriptionMax)
+			errors.push({
+				"tag" : this.tags.badValue, 
+				"desc" : this.desc.descriptionMax 
+			});
 		
 		return errors;
 	},
@@ -204,16 +233,34 @@ Validator.prototype = {
 	validateItemPicture : function (picture) {
 		var errors = [];
 		
+		//currently no implementation
 		
 		return errors;
 	},
 	
 	
 		
-	validateItemCategories : function (picture) {
+	validateItemCategories : function (category) {
 		var errors = [];
+		var catFound = false;
+		
+		if (category && category.trim().length > 0) {
+			this.validCategories.forEach(function(cat){
+				if(cat === category) {
+					catFound = true;
+				}
+					
+			});
+			
+			if (!catFound) 
+			errors.push({
+				"tag" : this.tags.badCategory, 
+				"desc" : this.desc.vldCategory
+			});
+		}
 		
 		
+			
 		return errors;
 	},
 	
@@ -222,13 +269,39 @@ Validator.prototype = {
 	validateItemPrice : function(price) {
 		var errors = [];
 		
+		if (price && price.trim().length > 0 ) {
+			if (!parseInt(price, 10) || parseInt(price, 10) < 0)
+				errors.push({
+					"tag" : this.tags.badValue, 
+					"desc" : this.desc.vldPrice
+				});
+		}
+			
+		
 		
 		return errors;
 	},
 	
-	validateItemRequiredFields : function(price) {
+	validateItemRequiredFields : function(title, category, price) {
 		var errors = [];
 		
+		if (!title || (title && title.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingTitle
+			});
+				
+		if (!category || (category && category.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingCategory
+			});
+				
+		if (!price || (price && price.trim().length <= 0))
+			errors.push({
+				"tag" : this.tags.missingField, 
+				"desc" : this.desc.missingPrice
+			});
 		
 		return errors;
 	}
