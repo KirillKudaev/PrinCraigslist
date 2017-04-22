@@ -1,4 +1,3 @@
-
 Parse.initialize("c2223ba7dbada94452e35b1659301bc6fc8bba82");
 Parse.serverURL = 'http://ec2-35-163-159-109.us-west-2.compute.amazonaws.com:80/parse';
 
@@ -814,9 +813,3 @@ Validator.prototype = {
 	
 	//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 };
-
-
-
-
-
-
