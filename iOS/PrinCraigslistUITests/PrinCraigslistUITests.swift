@@ -99,4 +99,24 @@ class PrinCraigslistUITests: XCTestCase {
         
         app.alerts["Error in form"].buttons["OK"].tap()
     }
+    
+    func testPostItem() {
+        
+        let app = XCUIApplication()
+        let logInButton = app.buttons["Log In"]
+        logInButton.tap()
+        
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.typeText("a")
+        logInButton.tap()
+        
+        XCTAssert(app.textFields["Email"].exists)
+        XCTAssert(app.secureTextFields["Password"].exists)
+        XCTAssert(app.alerts["Error in form"].exists)
+        XCTAssert(app.alerts["Error in form"].buttons["OK"].exists)
+        XCTAssert(app.buttons["Log In"].exists)
+        
+        app.alerts["Error in form"].buttons["OK"].tap()
+    }
 }
