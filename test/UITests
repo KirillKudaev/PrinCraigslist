@@ -1,0 +1,45 @@
+Examples:
+
+Home Page
+1) User clicks (log in button)
+2) Form pops up 
+3) User enters an email in the email box and a password in the password box
+	- if good data: taken to user home page
+	- if bad email: alert appears that says _______
+	- if bad password: alert apperars that says _______
+	_ if both bad email/password: alert appears that says _______
+	
+User Home Page
+1)Use clicks "Create a Listing" button
+2) Form pops up 
+3) User has option to enter info for: title, description, category, price
+	- if good data: alert appears that says ______
+	- if title entered that has more than 80 characters, alert generated that says___
+	- if category not selected from drop down, alert generated that says ______
+	- if price entered: alert appears that says ______
+
+	
+	
+Things to write tests on: (includes errors with bad data etc)
+Home page
+-login
+-signup
+
+User home page
+-Create a listing
+-logout
+-home
+-account
+
+
+Priorities:
+- Basic functionality
+	- Get listings
+	- login/logout/signup
+	- Create listings
+
+- Update item
+- delete item
+- delete user
+- update user
+
