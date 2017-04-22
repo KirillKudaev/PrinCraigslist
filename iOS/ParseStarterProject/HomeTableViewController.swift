@@ -66,21 +66,21 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return self.itemArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
         
         cell.titleLabel.text = self.itemArray[indexPath.row].title
         cell.descriptionLabel.text = self.itemArray[indexPath.row].description
-        
         cell.userNameLabel.text = self.itemArray[indexPath.row].userName
         
         let dateFormatter = DateFormatter()
@@ -88,7 +88,7 @@ class HomeTableViewController: UITableViewController {
         let createdAt = dateFormatter.string(from:self.itemArray[indexPath.row].createdAt)
         
         cell.lblTime.text = createdAt
-        //cell.userImage.image = UIImage(named: "AnonMask.png")
+
         return cell
     }
     
@@ -101,7 +101,6 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showItem" {
             if let destination = segue.destination as? ItemViewController {
